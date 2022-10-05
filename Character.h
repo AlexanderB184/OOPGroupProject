@@ -1,9 +1,12 @@
 #include <string>
 using namespace std;
 
+
+
 #ifndef CHARACTER_H
 #define CHARACTER_H
-
+#include "Status.h"
+class Status;
 class Character {
     public:
      string Name;
@@ -13,8 +16,8 @@ class Character {
      int baseDef;
      int baseSpeed;
      int baseHeal;
-     // Status* StatusEffect;
-     // int numberOfEffects;
+     Status** StatusEffect;
+     int numberOfEffects;
      // Move* Moveset;
      // int numberOfMoves;
      bool missNextTurn;

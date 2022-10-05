@@ -1,6 +1,6 @@
 #include <string>
 using namespace std;
-
+#include "Status.h"
 #include "Character.h"
 
 Character::Character() {
@@ -11,8 +11,8 @@ Character::Character() {
   baseDef = 20;
   baseSpeed = 20;
   baseHeal = 20;
-  // Status* StatusEffect;
-  // int numberOfEffects;
+  StatusEffect = nullptr;
+  numberOfEffects = 0;
   // Move* Moveset;
   // int numberOfMoves;
   missNextTurn = false;
@@ -27,8 +27,8 @@ Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,int _b
   baseDef = _baseDef;
   baseSpeed = _baseSpeed;
   baseHeal = _baseHeal;
-  // Status* StatusEffect;
-  // int numberOfEffects;
+  StatusEffect = nullptr;
+  numberOfEffects = 0;
   // Move* Moveset;
   // int numberOfMoves;
   missNextTurn = false;
@@ -40,14 +40,14 @@ Character::~Character(){
 };
 
 void Character::ApplyStatus() { 
-//for (int i = 0; i < numberOfEffects;i++) {
-//  StatusEffects[i].apply(this);
-//if (HP > maxHP) {
-//    HP = maxHP;
-//}
-//else if (HP <= 0) {
-//    HP = 0;
-//    dead = true;
-//}
-//}
+for (int i = 0; i < numberOfEffects;i++) {
+  StatusEffect[i][0].Apply(this);
+}
+if (HP > maxHP) {
+    HP = maxHP;
+}
+else if (HP <= 0) {
+    HP = 0;
+    dead = true;
+}
 };
