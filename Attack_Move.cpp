@@ -16,3 +16,9 @@ Attack_Move::Attack_Move(std::string attackName, int maxUses, int pow,
   damage = pow;
   accuracy = acc;
 }
+
+// need to turn Character into a valid class
+
+//void Attack_Move::Execute(Character Actor, Character Target) {
+//
+//}

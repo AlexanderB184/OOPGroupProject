@@ -7,6 +7,7 @@ class Move : public Action {
  public:
   Move();
   void Reset_Uses();  // set remainingUses to initialUses
+
   int remainingUses;
   int initialUses;
 };
