@@ -2,7 +2,8 @@
 #define ACTION_H
 #include <string>
 
-class Character;
+//class Character;
+#include "Character.h"
 
 class Action {
  public:
