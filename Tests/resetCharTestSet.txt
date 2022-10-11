@@ -1,0 +1,16 @@
+Tests for the reset Character function
+
+Test 1
+reset a fresh Character
+
+Test 2
+Set the characters moves remaining uses to 0
+
+Test 3
+Set their health to 0 and make them dead
+
+Test 4
+give them a status effect
+
+Test 5
+give them miss next turn
