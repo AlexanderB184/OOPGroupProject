@@ -56,13 +56,13 @@ Expected:Mixture of player missing turn and not missing turn when executed sever
 Test 13
 Burn Effect with damage rate of 5
 Heal Effect with heal rate of 5
-Expected:HP is 100/100
+HP is 100/100
+Expected:
 
-Test 14
 The heal and burn effects should cancel out,
 Expected:HP should remain 100/100
 
-Test 15
+Test 14
 Burn Effect with damage rate of 5
 Heal Effect with heal rate of 5
 HP is 5/100
@@ -70,7 +70,7 @@ Expected:The heal and burn effects should cancel out,
 HP should remain 5/100
 The character should not die
 
-Test 16
+Test 15
 Burn Effect with damage rate of 5
 Heal Effect with heal rate of 5
 HP is 1/100
@@ -78,14 +78,14 @@ Expected:The heal and burn effects should cancel out,
 HP should remain 1/100
 The character should not die
 
-Test 17
+Test 16
 Burn Effect with damage rate of 5
 Heal Effect with heal rate of 5
 HP is 35/100
 Expected:The heal and burn effects should cancel out,
 HP should remain 35/100
 
-Test 18
+Test 17
 Burn Effect with damage rate of 5
 Heal Effect with heal rate of 5
 Stun Effect with 50% miss turn chance

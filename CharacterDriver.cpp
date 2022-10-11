@@ -19,7 +19,7 @@ int main(void) {
   }
   // test 2
   { 
-    Character Test2 = Character("Isaac", 100, 50, 50, 50, 50, "Moves"); 
+    Character Test2 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0); 
     if (Test2.Name != "Isaac" || Test2.HP != 100 ) {
     cout << "Test 2 Failed" << endl; 
     }
@@ -27,7 +27,7 @@ int main(void) {
   // test 3
   { 
     try {
-    Character Test3 = Character("", 0, 0, 0, 0, 0, "Moves"); 
+    Character Test3 = Character("", 0, 0, 0, 0, 0, nullptr, 0); 
     }
     catch (...) { 
         cout << "Test 3 Failed" << endl; 
@@ -38,13 +38,13 @@ int main(void) {
   // need to add statuses first
 
   {
-    Character Test4 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test4 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test4.ApplyStatus();
   }
 
   //test 5
   {
-    Character Test5 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test5 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Status** Effects = new Status*[1];
     Effects[0] = new BurnEffect(5, 10);
     Test5.StatusEffect = Effects;
@@ -62,7 +62,7 @@ int main(void) {
   }
   //test 6
   {
-    Character Test6 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test6 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test6.HP = 5;
     Status** Effects = new Status*[1];
     Effects[0] = new BurnEffect(5, 10);
@@ -82,7 +82,7 @@ int main(void) {
   }
   //test 7
   {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 1;
     Status** Effects = new Status*[1];
     Effects[0] = new BurnEffect(5, 10);
@@ -103,7 +103,7 @@ int main(void) {
 
   //test 8
   {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 100;
     Status** Effects = new Status*[1];
     Effects[0] = new RegenEffect(5, 10);
@@ -116,7 +116,7 @@ int main(void) {
   }
    //test 9
   {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 35;
     Status** Effects = new Status*[1];
     Effects[0] = new RegenEffect(5, 10);
@@ -129,7 +129,7 @@ int main(void) {
   }
   //test 10
   {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Status** Effects = new Status*[1];
     Effects[0] = new StunEffect(0, 10);
     Test7.StatusEffect = Effects;
@@ -142,7 +142,7 @@ int main(void) {
   
   //Test 11
   {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Status** Effects = new Status*[1];
     Effects[0] = new StunEffect(100, 10);
     Test7.StatusEffect = Effects;
@@ -156,7 +156,7 @@ int main(void) {
   //Test 12
   {
   int S = 0;
-  Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+  Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
   Status** Effects = new Status*[1];
   Effects[0] = new StunEffect(50, 1000);
   Test7.numberOfEffects = 1;
@@ -174,7 +174,7 @@ int main(void) {
 
 //Test 13
 {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Status** Effects = new Status*[2];
     Effects[0] = new BurnEffect(5, 10);
     Effects[1] = new RegenEffect(5, 10);
@@ -187,7 +187,7 @@ int main(void) {
   }
 //Test 14
 {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 5;
     Status** Effects = new Status*[2];
     Effects[0] = new BurnEffect(5, 10);
@@ -210,7 +210,7 @@ int main(void) {
   }
 //Test 15
 {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 1;
     Status** Effects = new Status*[2];
     Effects[0] = new BurnEffect(5, 10);
@@ -233,7 +233,7 @@ int main(void) {
   }
 //Test 16
 {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 35;
     Status** Effects = new Status*[2];
     Effects[0] = new BurnEffect(5, 10);
@@ -247,7 +247,7 @@ int main(void) {
   }
 //Test 17
 {
-    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, "Moves");
+    Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 50;
     Status** Effects = new Status*[3];
     Effects[0] = new BurnEffect(5, 10);
