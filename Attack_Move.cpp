@@ -19,14 +19,18 @@ Attack_Move::Attack_Move(std::string attackName, int maxUses, int pow,
   accuracy = acc;
 }
 
-void Attack_Move::Execute(Character Actor, Character Target) {
-  std::cout << Actor.Name << " used " << name << std::endl;
+void Attack_Move::Execute(Character* Actor, Character* Target) {
+  std::cout << Actor[0].Name << " used " << name << std::endl;
 
-  int random = 0 + (rand() % 101); //I'm currently trying to think of how to incorporate speed into the accuracy formula
+  int random = (0 + (rand() % 101)) * Actor[0].baseSpeed / Target[0].baseSpeed;
   if (random >= accuracy) {
-    Target.HP = Target.HP - (damage * Actor.baseAtt / Target.baseDef);
-    std::cout << Target.Name << " lost "
-              << damage * Actor.baseAtt / Target.baseDef << " health"
+    if (Target[0].HP - (damage * Actor[0].baseAtt / Target[0].baseDef) > 0) {
+      Target[0].HP = Target[0].HP - (damage * Actor[0].baseAtt / Target[0].baseDef);
+    } else {
+      Target[0].HP = 0;
+    }
+    std::cout << Target[0].Name << " lost "
+              << damage * Actor[0].baseAtt / Target[0].baseDef << " health"
               << std::endl;
   } else {
     std::cout << "The attack missed!" << std::endl;

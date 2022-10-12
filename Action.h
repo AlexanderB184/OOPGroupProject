@@ -8,7 +8,7 @@
 class Action {
  public:
   Action();
-  virtual void Execute(Character Actor, Character Target) = 0;
+  virtual void Execute(Character* Actor, Character* Target) = 0;
   
   std::string name;
 };

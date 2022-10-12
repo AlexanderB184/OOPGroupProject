@@ -9,7 +9,7 @@ class Special_Attack_Move : public Move {
  public:
   Special_Attack_Move();
   Special_Attack_Move();
-  void Execute(Character Actor, Character Target);
+  void Execute(Character* Actor, Character* Target);
 
   // statusEffect status;
   int damage;
