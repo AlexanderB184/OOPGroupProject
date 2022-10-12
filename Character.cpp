@@ -133,7 +133,7 @@ void Character::removeStatus(int effectIndex){
   numberOfEffects--;
 };
 
-void Character::removeStatus(string effectType){
+bool Character::removeStatus(string effectType){
   //Find all Statuses with type == effectType
   int n = 0;
   for (int iStatus = 0; iStatus < numberOfEffects; iStatus++) {
@@ -148,7 +148,7 @@ void Character::removeStatus(string effectType){
     numberOfEffects = 0;
     delete StatusEffect;
     StatusEffect = nullptr;
-    return;
+    return true;
   }
   //If all Status effects are to be removed, clear the entire array.
 
@@ -167,4 +167,5 @@ void Character::removeStatus(string effectType){
   StatusEffect = newStatusEffect;
   // decrement numOfEffects
   numberOfEffects-=n;
-};
+  return n > 0;
+  };

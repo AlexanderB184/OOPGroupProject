@@ -46,7 +46,7 @@ class Character {
   //Adds a status to the character
 
   void removeStatus(int effectIndex);
-  void removeStatus(string effectType);
+  bool removeStatus(string effectType);
   // Removes a status from the character, either by specifying the index of the
   // status to be removed or the type
 };
