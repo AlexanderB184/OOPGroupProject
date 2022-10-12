@@ -52,10 +52,14 @@ Character::~Character(){
 };
 
 void Character::ApplyStatus() { 
+  if (StatusEffect == nullptr) {
+    return;
+  }
 for (int i = 0; i < numberOfEffects;i++) {
   StatusEffect[i][0].Apply(this);
   if (StatusEffect[i][0].duration <= 0) {
     removeStatus(i);
+    i--;
   }
 }
 if (HP > maxHP) {
@@ -109,7 +113,6 @@ void Character::removeStatus(int effectIndex){
   if (effectIndex < 0 || effectIndex >= numberOfEffects) {
     return;
   }
-  cout << StatusEffect[effectIndex] << endl;
   delete StatusEffect[effectIndex];
   StatusEffect[effectIndex] = nullptr;
   

@@ -56,9 +56,6 @@ int main(void) {
     if (Test5.dead) {
       cout << "Test 5 Failed Character Died" << endl;
     }
-    if (Test5.StatusEffect[0][0].duration != 9) {
-      cout << "Test 5 Failed Invalid Duration " << Test5.StatusEffect[0][0].duration << endl;
-    }
   }
   //test 6
   {
@@ -190,8 +187,8 @@ int main(void) {
     Character Test7 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Test7.HP = 5;
     Status** Effects = new Status*[2];
-    Effects[0] = new BurnEffect(5, 10);
-    Effects[1] = new RegenEffect(5, 10);
+    Effects[0] = new BurnEffect(5, 1);
+    Effects[1] = new RegenEffect(5, 1);
     Test7.numberOfEffects = 2;
     Test7.StatusEffect = Effects;
     Test7.ApplyStatus();
@@ -200,12 +197,6 @@ int main(void) {
     }
     if (Test7.dead) {
       cout << "Test 14 Failed Character Died" << endl;
-    }
-    if (Test7.StatusEffect[0][0].duration != 9) {
-      cout << "Test 14 Failed Invalid Duration " << Test7.StatusEffect[0][0].duration << endl;
-    }
-    if (Test7.StatusEffect[1][0].duration != 9) {
-      cout << "Test 14 Failed Invalid Duration " << Test7.StatusEffect[1][0].duration << endl;
     }
   }
 //Test 15
