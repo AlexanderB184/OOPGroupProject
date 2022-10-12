@@ -24,6 +24,9 @@ class Controller {
      ~Controller();
      virtual Action* getAction() = 0;
      void generateOptions();
+
+     void addItem(Item*);
+     void removeItem(int index);
 };
 
 #endif
