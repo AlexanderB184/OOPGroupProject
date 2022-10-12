@@ -1,0 +1,20 @@
+GetOptions
+
+Test 1
+Empty Move Set, Empty Inventory
+Expected: No Options
+
+Test 2
+Single Move, Empty Inventory
+Expected: One Option
+
+Test 3
+Fours Moves, Empty Inventory
+Expected: Four Options
+
+Test 4
+Empty Move Set, One Item
+Expected: One Option
+Four Moves, Five Items
+Expected: Nine Options
+

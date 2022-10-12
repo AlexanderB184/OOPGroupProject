@@ -1,0 +1,17 @@
+-------
+Burn
+-------
+Burn
+Regen
+-------
+Burn
+Regen
+Stun
+0x55ea7b54e320
+-------
+Burn
+Stun
+-------
+Burn
+Stun
+Segmentation fault
