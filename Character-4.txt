@@ -1,3 +1,0 @@
-Test 12: 46
-Test 14 Failed
-Test 15 Failed
