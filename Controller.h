@@ -3,7 +3,9 @@
 
 #include "Character.h"
 #include "Status.h"
-
+#include "Move.h"
+#include "Item.h"
+#include "UseItem.h"
 #include <string>
 
 using namespace std;
@@ -19,9 +21,6 @@ class Controller {
      int numberOfItems;
      Action** actionOptions;
      int numberOfOptions;
-     Controller();
-     Controller(Character*, Item*, int);
-     ~Controller();
      virtual Action* getAction() = 0;
      void generateOptions();
 

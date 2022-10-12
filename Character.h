@@ -6,13 +6,11 @@ using namespace std;
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include "Status.h"
+#include "Move.h"
+
 class Status;
 
-class Move {
-  public:
-  int remainingUses;
-  int initialUses;
-};
+class Move;
 
 class Character {
  public:

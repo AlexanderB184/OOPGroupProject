@@ -11,10 +11,11 @@ Item::Item(){
 };
 
 // Implementation of an Item constructor taking a name, type, and quantity.
-Item::Item(string iName, string iType, int iQuantity){
+Item::Item(string iName, string iType, int iQuantity, UseItem* _action){
   name = iName;
   type = iType;
   quantity = iQuantity;
+  action = _action;
 };
 
 // Implementation of the default item deconstructor

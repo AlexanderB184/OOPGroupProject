@@ -3,6 +3,7 @@
 using namespace std;
 #include "Status.h"
 #include "Character.h"
+#include "Move.h"
 
 Character::Character() {
   Name = "";

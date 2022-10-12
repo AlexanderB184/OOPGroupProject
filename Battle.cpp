@@ -54,13 +54,13 @@ void Battle::Turn() {
 
   //Getting the players action
   cout << "Getting Action" << endl;
+  activePlayer[0].generateOptions();
   Action* selectedAction = activePlayer[0].getAction();
 
   //Executing the players action
   cout << "Executing Action" << endl;
-  selectedAction[0].execute(activeCharacter,
+  selectedAction[0].Execute(activeCharacter,
                          opposingCharacter);
-
   //Swapping whose turn it is                       
   currentTurn = !currentTurn;
   cout << "End of turn" << endl;

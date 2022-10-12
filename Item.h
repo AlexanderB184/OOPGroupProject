@@ -1,7 +1,9 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#ifndef ITEM_H
+#define ITEM_H
 
 #include <string>
+//#include "UseItem.h"
+class UseItem;
 
 using namespace std;
 
@@ -11,9 +13,11 @@ class Item {
         string name;
         string type;
         int quantity;
+        
     public:
-        Item();
-        Item(string iName, string iType, int iQuantity);
-        ~Item();
+     UseItem* action;
+     Item();
+     Item(string iName, string iType, int iQuantity, UseItem* action);
+     ~Item();
 };
 #endif //ITEM_H

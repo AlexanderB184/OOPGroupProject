@@ -8,10 +8,13 @@
 using namespace std;
 
 // Class definition for UseItem class
-class UseItem: public Item {
+class UseItem : public Action{
     public:
-        UseItem();
-        UseItem(string name, string type, int quantity);
-        ~UseItem();
+     string type;
+     Item* item;
+     int quantity;
+     UseItem();
+     UseItem(string name, string type, int quantity);
+     ~UseItem();
 };
 #endif //USEITEM_H

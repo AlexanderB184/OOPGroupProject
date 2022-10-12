@@ -10,7 +10,9 @@ using namespace std;
 class HumanController: public Controller {
     public:
      Action* getAction();
-     using Controller::Controller;
+     HumanController();
+     HumanController(Character*, Item*, int);
+     ~HumanController();
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define ATTACK_MOVE_H
 
 #include "Move.h"
+#include "Character.h"
 
 class Attack_Move : public Move {
  public:
