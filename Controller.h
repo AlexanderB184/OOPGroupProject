@@ -19,9 +19,9 @@ class Controller {
      int numberOfItems;
      Action** actionOptions;
      int numberOfOptions;
-     Controller();
-     Controller(Character*, Item*, int);
-     ~Controller();
+     //Controller();
+     //Controller(Character*, Item*, int);
+     //~Controller();
      virtual Action* getAction() = 0;
      void generateOptions();
      ~Controller();

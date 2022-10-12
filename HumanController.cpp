@@ -23,3 +23,31 @@ Action* HumanController::getAction() {
       cout << "Invalid Option, try again" << endl;
     }
 };
+
+HumanController::HumanController() { 
+    numberOfItems = 0;
+    inventory = nullptr;
+    numberOfOptions = 0;
+    actionOptions = nullptr;
+    character = nullptr;
+};
+
+HumanController::HumanController(Character* _character, Item* _inventory, int _numberOfItems){
+    numberOfItems = _numberOfItems;
+    inventory = _inventory;
+    numberOfOptions = 0;
+    actionOptions = nullptr;
+    character = _character;
+};
+
+HumanController::~HumanController(){
+    if (actionOptions != nullptr) {
+      delete actionOptions;
+    }
+    if (character != nullptr) {
+      delete character;
+    }
+    if (inventory != nullptr) {
+      delete inventory;
+    }
+};
