@@ -22,8 +22,13 @@ Controller::Controller(Character* _character, Item* _inventory, int _numberOfIte
 
 Controller::~Controller(){
     if (actionOptions != nullptr) {
+    
+      for (int iAction = 0; iAction < numberOfOptions; iAction++) {
+        delete actionOptions[iAction];
+      }
       delete actionOptions;
     }
+    
     if (character != nullptr) {
       delete character;
     }

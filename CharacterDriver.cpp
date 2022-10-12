@@ -46,7 +46,7 @@ int main(void) {
   {
     Character Test5 = Character("Isaac", 100, 50, 50, 50, 50, nullptr, 0);
     Status** Effects = new Status*[1];
-    Effects[0] = new BurnEffect(5, 10);
+    Effects[0] = new BurnEffect(5, 1);
     Test5.StatusEffect = Effects;
     Test5.numberOfEffects = 1;
     Test5.ApplyStatus();

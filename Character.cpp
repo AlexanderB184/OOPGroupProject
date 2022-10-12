@@ -37,12 +37,26 @@ Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,int _b
 };
 
 Character::~Character(){
-    // Delete Moveset and Status
+  if (numberOfEffects > 0) {
+    for (int iStatus = 0; iStatus < numberOfEffects; iStatus++) {
+      delete StatusEffect[iStatus];
+    }
+  }
+  delete StatusEffect;
+  if (numberOfMoves > 0) {
+    for (int iMove = 0; iMove < numberOfMoves; iMove++) {
+      delete Moveset[iMove];
+    }
+  }
+  delete Moveset;
 };
 
 void Character::ApplyStatus() { 
 for (int i = 0; i < numberOfEffects;i++) {
   StatusEffect[i][0].Apply(this);
+  if (StatusEffect[i][0].duration <= 0) {
+    removeStatus(i);
+  }
 }
 if (HP > maxHP) {
     HP = maxHP;

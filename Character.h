@@ -29,16 +29,26 @@ class Character {
   int numberOfMoves;
   bool missNextTurn;
   bool dead;
+
   Character();
   Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
             int _baseSpeed, int _baseHeal, Move** Moveset, int _numberOfMoves);
   ~Character();
+
+  
   void ApplyStatus();
+  //Applies the effect of all Status effects a character has onto that character
+
   void resetCharacter();
+  //Resets all the stats of a character
 
   void addStatus(Status* Effect);
+  //Adds a status to the character
+
   void removeStatus(int effectIndex);
   void removeStatus(string effectType);
+  // Removes a status from the character, either by specifying the index of the
+  // status to be removed or the type
 };
 
 #endif
