@@ -14,7 +14,6 @@ void Controller::generateOptions() {
   actionOptions = nullptr;
 
   //Calculate the number of options availavle to a character
-  numberOfOptions = numberOfItems + character[0].numberOfMoves;
 
   actionOptions = new Action*[numberOfOptions];
 
@@ -22,8 +21,10 @@ void Controller::generateOptions() {
   
   //add characters Moveset to Action Options
   for (int iMove = 0; iMove < character[0].numberOfMoves; iMove++) {
-    actionOptions[iOption] = character[0].Moveset[iMove];
-    iOption++;
+    if (character[0].Moveset[iMove][0].remainingUses > 0) {
+      actionOptions[iOption] = character[0].Moveset[iMove];
+      iOption++;
+    }
   }
 
   //add item actions to Action Options
@@ -31,4 +32,5 @@ void Controller::generateOptions() {
     actionOptions[iOption] = inventory[iItem].action;
     iOption++;
   }
+  numberOfOptions = iOption;
 };

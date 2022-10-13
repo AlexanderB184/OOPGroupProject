@@ -33,7 +33,7 @@ int main(void) {
         //Ask player for character
         Game.Character1 = ui.selectCharacter();
         //Ask player to select items
-        Game.Player1.addItem(ui.selectItem());
+        Game.Players[0][0].addItem(&ui.selectItem());
 
     }
 

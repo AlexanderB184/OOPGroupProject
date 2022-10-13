@@ -24,12 +24,12 @@ Heal_Move::Heal_Move(std::string healName, int maxUses, int restoreAmount,
 void Heal_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
-  if (Target[0].HP + healAmount < Target[0].maxHP) {
-    Target[0].HP = Target[0].HP + healAmount;
+  if (Actor[0].HP + healAmount < Actor[0].maxHP) {
+    Actor[0].HP = Actor[0].HP + healAmount;
   } else {
-    Target[0].HP = Target[0].maxHP;
+    Actor[0].HP = Actor[0].maxHP;
   }
-  std::cout << Target[0].Name << " recovered " << healAmount << " health"
+  std::cout << Actor[0].Name << " recovered " << healAmount << " health"
             << std::endl;
 
   remainingUses--;

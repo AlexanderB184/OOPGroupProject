@@ -13,8 +13,7 @@
 class GameSave {
     public:
      Battle OngoingBattle;
-     HumanController Player1;
-     ComputerController Player2;
+     Controller** Players;
      Character Character1;
      Character Character2;
 

@@ -11,7 +11,7 @@ Action* HumanController::getAction() {
     while (!isValidOption) {
       cout << "Select an Option" << endl;
       for (int iOption = 0; iOption < numberOfOptions; iOption++){
-        cout << actionOptions[iOption][0].name << ": " << actionOptions[iOption][0].description << endl;
+        cout << iOption << ": " << actionOptions[iOption][0].name << ": " << actionOptions[iOption][0].description << endl;
       }
       cin >> userInput;
       cout << endl;
@@ -19,7 +19,9 @@ Action* HumanController::getAction() {
         if (userInput == actionOptions[iOption][0].name) {
           return actionOptions[iOption];
         }
-      }
+        if (stoi(userInput) == iOption) {
+          return actionOptions[iOption];
+        }}
       cout << "Invalid Option, try again" << endl;
     }
 };

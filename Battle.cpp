@@ -23,20 +23,27 @@ Battle::~Battle() {
 
 void Battle::initBattle() {
   currentTurn = 0;
-  for (int iPlayer = 0; iPlayer < 2; iPlayer++) {
-    players[iPlayer][0].character[0].resetCharacter();
-  }
+  players[0][0].character[0].resetCharacter();
+  players[1][0].character[0].resetCharacter();
 };
 
 void Battle::Turn() {
-
-  //These pointers exist for clarity
-  //They do not need to be free since they point to already allocated memory managed by a different object
+  
+  // These pointers exist for clarity
+  // They do not need to be free since they point to already allocated memory
+  // managed by a different object
   Controller* activePlayer = players[currentTurn];
   Controller* opposingPlayer = players[!currentTurn];
 
   Character* activeCharacter = activePlayer[0].character;
   Character* opposingCharacter = opposingPlayer[0].character;
+
+  cout << "=========================" << endl;
+  cout << "Beginning of Player " << currentTurn+1 << "'s Turn" << endl;
+  cout << "=========================" << endl;
+  cout << activeCharacter[0].Name << endl;
+  cout << activeCharacter[0].HP << endl;
+  cout << "=========================" << endl;
 
   //Apply Status Effects
   cout << "Applying Status Effects" << endl;
