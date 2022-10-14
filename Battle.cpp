@@ -60,8 +60,9 @@ void Battle::Turn() {
   }
 
   //Getting the players action
-  cout << "Getting Action" << endl;
+  cout << "Generating Options" << endl;
   activePlayer[0].generateOptions();
+  cout << "Getting Action" << endl;
   Action* selectedAction = activePlayer[0].getAction();
 
   //Executing the players action

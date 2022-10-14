@@ -31,10 +31,12 @@ class Character {
   Character();
   Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
             int _baseSpeed, int _baseHeal, Move** Moveset, int _numberOfMoves);
+  Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
+            int _baseSpeed, int _baseHeal, Move**, int[], int _numberOfMoves);
   Character(string);
   ~Character();
-
-    void ApplyStatus();
+  Character* clone();
+  void ApplyStatus();
   //Applies the effect of all Status effects a character has onto that character
 
   void resetCharacter();

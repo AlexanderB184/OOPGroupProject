@@ -11,17 +11,27 @@
 #include <iostream>
 
 class GameSave {
-    public:
-     Battle OngoingBattle;
-     Controller** Players;
-     Character Character1;
-     Character Character2;
+ public:
+  Character** PossibleCharacters;
+  int nPossibleCharacters;
+  Move** PossibleMoves;
+  int nPossibleMoves;
+  Item** PossibleItems;
+  int nPossibleItems;
 
-     GameSave();
-     ~GameSave();
+  Battle OngoingBattle;
+  Controller** Players;
+  Character* Character1;
+  Character* Character2;
 
-     bool loadFromFile(string filename);
-     bool saveToFile(string filename);
+  GameSave();
+  ~GameSave();
+
+  Character* selectCharacter();
+
+  bool loadFromFile(string filename);
+  bool saveToFile(string filename);
 };
+
 
 #endif

@@ -1,6 +1,7 @@
 #include "Attack_Move.h"
 
 #include <iostream>
+#include <math.h>
 
 Attack_Move::Attack_Move() {
   name = "a";
@@ -18,11 +19,18 @@ Attack_Move::Attack_Move(std::string attackName, int maxUses, int pow, int acc) 
   accuracy = acc;
 }
 
+
+Attack_Move* Attack_Move::clone(){
+  Attack_Move* clonedAttack =
+      new Attack_Move(name, initialUses, damage, accuracy);
+  return clonedAttack;
+}
+
 void Attack_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
   int random = (0 + (rand() % 100));
-  if (random <= accuracy * Actor[0].baseSpeed / Target[0].baseSpeed) {
+  if (random <= accuracy * pow(0.95, Target[0].baseSpeed/10)) {
     std::cout << Target[0].Name << " lost "
               << damage * Actor[0].baseAtt / Target[0].baseDef << " health"
               << std::endl;

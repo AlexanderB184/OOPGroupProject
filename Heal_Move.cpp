@@ -21,6 +21,12 @@ Heal_Move::Heal_Move(std::string healName, int maxUses, int restoreAmount,
   remainingCoolDown = 0;
 }
 
+Heal_Move* Heal_Move::clone(){
+  Heal_Move* clonedHeal =
+      new Heal_Move(name, initialUses, healAmount, maxCoolDown);
+  return clonedHeal;
+}
+
 void Heal_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 

@@ -19,9 +19,7 @@ Action* HumanController::getAction() {
         if (userInput == actionOptions[iOption][0].name) {
           return actionOptions[iOption];
         }
-        if (stoi(userInput) == iOption) {
-          return actionOptions[iOption];
-        }}
+        }
       cout << "Invalid Option, try again" << endl;
     }
 };

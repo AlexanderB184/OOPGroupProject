@@ -6,6 +6,7 @@ using namespace std;
 #include "Move.h"
 #include "Attack_Move.h"
 #include "Heal_Move.h"
+#include "GameSave.h"
 
 Character::Character(string characterName) {
   if (characterName == "Bob") {
@@ -112,6 +113,25 @@ Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,int _b
   numberOfEffects = 0;
   Moveset = _Moveset;
   numberOfMoves = _numberOfMoves;
+  missNextTurn = false;
+  dead = false;
+};
+
+Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,int _baseSpeed, int _baseHeal, Move** PossibleMoves, int _Moveset [], int _numberOfMoves) {
+  Name = _Name;
+  HP = _maxHP;
+  maxHP = _maxHP;
+  baseAtt = _baseAtt;
+  baseDef = _baseDef;
+  baseSpeed = _baseSpeed;
+  baseHeal = _baseHeal;
+  StatusEffect = nullptr;
+  numberOfEffects = 0;
+  numberOfMoves = _numberOfMoves;
+  Moveset = new Move*[numberOfMoves];
+  for (int iMove = 0; iMove < numberOfMoves; iMove++) {
+    Moveset[iMove] = PossibleMoves[_Moveset[iMove]][0].clone();
+  }
   missNextTurn = false;
   dead = false;
 };
@@ -248,4 +268,16 @@ bool Character::removeStatus(string effectType){
   // decrement numOfEffects
   numberOfEffects-=n;
   return n > 0;
+  };
+
+  Character* Character::clone() {
+    Move** clonedMoveset = new Move* [numberOfMoves];
+    for (int iMove = 0; iMove < numberOfMoves; iMove ++) {
+      clonedMoveset[iMove] = Moveset[iMove][0].clone();
+    }
+
+    Character* clonedCharacter =
+        new Character(Name, maxHP, baseAtt, baseDef, baseSpeed, baseHeal,
+                      clonedMoveset, numberOfMoves);
+    return clonedCharacter;
   };
