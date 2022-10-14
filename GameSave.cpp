@@ -5,9 +5,9 @@
 GameSave::GameSave() {
     nPossibleMoves = 4;
     PossibleMoves = new Move*[nPossibleMoves];
-    PossibleMoves[0] = new Attack_Move("Stab", 1000, 35, 75);
+    PossibleMoves[0] = new Attack_Move("Stab", 1000, 35, 85);
     PossibleMoves[1] = new Attack_Move("Slash", 1000, 20, 90);
-    PossibleMoves[2] = new Attack_Move("Shoot", 6, 65, 50);
+    PossibleMoves[2] = new Attack_Move("Shoot", 6, 65, 60);
     PossibleMoves[3] = new Heal_Move("Meditate", 5, 50, 2);
     nPossibleCharacters = 4;
     PossibleCharacters = new Character*[nPossibleCharacters];
