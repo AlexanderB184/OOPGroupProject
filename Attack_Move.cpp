@@ -14,7 +14,7 @@ Attack_Move::Attack_Move(std::string attackName, int maxUses, int pow,
                          int acc) {
   name = attackName;
   initialUses = maxUses;
-  remainingUses = maxUses;
+  remainingUses = maxUses; // remaining uses always starts at the maximum
   damage = pow;
   accuracy = acc;
 }
