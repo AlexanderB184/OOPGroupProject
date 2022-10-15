@@ -20,10 +20,12 @@ Status_Move::Status_Move(std::string statusMoveName, int maxUses, Status* _statu
 }
 
 void Status_Move::Execute(Character* Actor, Character* Target) { //currently non-functional
-    switch (statusName) {
-        case "Burn":
-        Status* newStatus = new BurnEffect(status[0].damageRate,status[0].duration);
-        case "Regen":
-            }
-    Target[0].addStatus(newStatus);
+    //switch (statusName) {
+        //case "Burn":
+       // Status** newStatus = new BurnEffect * [1];
+        //newStatus[0] = new BurnEffect(status[0].damageRate,status[0].duration);
+       // case "Regen":
+          //  }
+    Target[0].addStatus( status[0].clone() );
+    //Target[0].addStatus(newStatus);
 }

@@ -9,6 +9,8 @@ class Character;
 
 class Status {
  public:
+  virtual Status* clone() = 0;
+
   int duration;
   string statusType;
   virtual void Apply(Character* Target) = 0;
@@ -16,6 +18,8 @@ class Status {
 
 class BurnEffect: public Status {
     public:
+    virtual BurnEffect* clone();
+
      int damageRate;
      BurnEffect();
      BurnEffect(int _damageRate, int _duration);
@@ -24,6 +28,8 @@ class BurnEffect: public Status {
 
 class RegenEffect: public Status {
     public:
+    virtual RegenEffect* clone();
+
      int healRate;
      RegenEffect();
      RegenEffect(int _healRate, int _duration);
@@ -32,6 +38,8 @@ class RegenEffect: public Status {
 
 class StunEffect: public Status {
     public:
+    virtual StunEffect* clone();
+
      int chanceToMissTurn;
      StunEffect();
      StunEffect(int _chanceToMissTurn, int _duration);

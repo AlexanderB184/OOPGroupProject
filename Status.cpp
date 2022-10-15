@@ -22,6 +22,11 @@ void BurnEffect::Apply(Character* Target) {
     duration -= 1;
 }
 
+BurnEffect* BurnEffect::clone(){
+  BurnEffect* clonedBurn = new BurnEffect(damageRate, duration);
+  return clonedBurn;
+}
+
 RegenEffect::RegenEffect() { 
     duration = 0;
     healRate = 0;
@@ -37,6 +42,11 @@ RegenEffect::RegenEffect(int _healRate, int _duration) {
 void RegenEffect::Apply(Character* Target) { 
     Target[0].HP += healRate;
     duration -= 1;
+}
+
+RegenEffect* RegenEffect::clone(){
+  RegenEffect* clonedRegen = new RegenEffect(healRate, duration);
+  return clonedRegen;
 }
 
 StunEffect::StunEffect() { 
@@ -56,4 +66,9 @@ void StunEffect::Apply(Character* Target) {
     Target[0].missNextTurn = true;
   }
     duration -= 1;
+}
+
+StunEffect* StunEffect::clone(){
+  StunEffect* clonedStun = new StunEffect(chanceToMissTurn, duration);
+  return clonedStun;
 }
