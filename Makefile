@@ -1,0 +1,2 @@
+moves_test: moves_test.cpp Status.h Status.cpp Character.h Character.cpp Action.h Action.cpp Move.h Move.cpp Attack_Move.h Attack_Move.cpp Heal_Move.h Heal_Move.cpp
+	g++ -std=c++11 -o moves_test moves_test.cpp Status.h Status.cpp Character.h Character.cpp Action.h Action.cpp Move.h Move.cpp Attack_Move.h Attack_Move.cpp Heal_Move.h Heal_Move.cpp
