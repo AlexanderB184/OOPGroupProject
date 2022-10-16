@@ -1,5 +1,7 @@
 #include "Status_Move.h"
 
+#include <math.h>
+
 #include <iostream>
 
 Status_Move::Status_Move() {
@@ -15,7 +17,7 @@ Status_Move::Status_Move(std::string statusMoveName, int maxUses,
                          Status* _status, std::string _statusName, int acc) {
   name = statusMoveName;
   initialUses = maxUses;
-  remainingUses = maxUses;
+  remainingUses = maxUses; // remaining uses always starts at the maximum
   status = _status;
   statusName = _statusName;
   statusAccuracy = acc;
@@ -24,8 +26,8 @@ Status_Move::Status_Move(std::string statusMoveName, int maxUses,
 void Status_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
-  int random = (0 + (rand() % 101)) * Actor[0].baseSpeed / Target[0].baseSpeed;
-  if (random >= statusAccuracy) {
+  int random = (0 + (rand() % 100));
+  if (random >= statusAccuracy * pow(0.95, Target[0].baseSpeed / 10)) {
     Target[0].addStatus(status[0].clone());
     std::cout << Target[0].Name << " became inflicted with " << statusName
               << std::endl;

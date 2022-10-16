@@ -1,5 +1,7 @@
 #include "Special_Attack_Move.h"
 
+#include <math.h>
+
 #include <iostream>
 
 Special_Attack_Move::Special_Attack_Move() {
@@ -30,8 +32,8 @@ Special_Attack_Move::Special_Attack_Move(std::string attackName, int maxUses,
 void Special_Attack_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
-  int random = (0 + (rand() % 101)) * Actor[0].baseSpeed / Target[0].baseSpeed;
-  if (random >= accuracy) {
+  int random = (0 + (rand() % 100));
+  if (random >= accuracy * pow(0.95, Target[0].baseSpeed / 10)) {
     if (Target[0].HP - (damage * Actor[0].baseAtt / Target[0].baseDef) > 0) {
       Target[0].HP =
           Target[0].HP - (damage * Actor[0].baseAtt / Target[0].baseDef);
@@ -42,12 +44,13 @@ void Special_Attack_Move::Execute(Character* Actor, Character* Target) {
               << damage * Actor[0].baseAtt / Target[0].baseDef << " health"
               << std::endl;
 
-    random = (0 + (rand() % 101));
-    if (random >= statusAccuracy) {
+    random = (0 + (rand() % 100));
+    if (random >=
+        statusAccuracy) {  // the additional status check is not based on speed
       Target[0].addStatus(status[0].clone());
       std::cout << Target[0].Name << " became inflicted with " << statusName
                 << std::endl;
-    }
+    }  // the additional status check only outputs a message if it succeeds
 
   } else {
     std::cout << "The attack missed!" << std::endl;
