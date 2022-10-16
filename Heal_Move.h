@@ -8,6 +8,7 @@ class Heal_Move : public Move {
   Heal_Move();
   Heal_Move(std::string healName, int maxUses, int restoreAmount, int coolDown);
   void Execute(Character* Actor, Character* Target);
+  Heal_Move* clone();
 
   int healAmount;
   int maxCoolDown;

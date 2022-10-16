@@ -1,0 +1,4 @@
+Test 12: 46
+Test 14 Failed Character Died
+Test 15 Failed Invalid HP 5
+Test 15 Failed Character Died

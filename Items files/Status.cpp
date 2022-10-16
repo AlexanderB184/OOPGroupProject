@@ -2,8 +2,8 @@
 
 using namespace std;
 
-#include "Character.h"
 #include "Status.h"
+#include "Character.h"
 
 BurnEffect::BurnEffect() { 
     duration = 0;
@@ -20,11 +20,6 @@ BurnEffect::BurnEffect(int _damageRate, int _duration) {
 void BurnEffect::Apply(Character* Target) { 
     Target[0].HP -= damageRate;
     duration -= 1;
-}
-
-BurnEffect* BurnEffect::clone(){
-  BurnEffect* clonedBurn = new BurnEffect(damageRate, duration);
-  return clonedBurn;
 }
 
 RegenEffect::RegenEffect() { 
@@ -44,11 +39,6 @@ void RegenEffect::Apply(Character* Target) {
     duration -= 1;
 }
 
-RegenEffect* RegenEffect::clone(){
-  RegenEffect* clonedRegen = new RegenEffect(healRate, duration);
-  return clonedRegen;
-}
-
 StunEffect::StunEffect() { 
     duration = 0;
     chanceToMissTurn = 0;
@@ -66,9 +56,4 @@ void StunEffect::Apply(Character* Target) {
     Target[0].missNextTurn = true;
   }
     duration -= 1;
-}
-
-StunEffect* StunEffect::clone(){
-  StunEffect* clonedStun = new StunEffect(chanceToMissTurn, duration);
-  return clonedStun;
 }

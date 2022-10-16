@@ -1,0 +1,95 @@
+Testing Constructor and Deconstructor
+
+Test 1a Creating a generic Character
+Test 1b Deleting a generic Character
+Test 2a Creating a character with all stats at 20
+Test 2b Deleting a generic Character
+Test 3a Creating a character with 
+Test 3b Deleting a character with 
+
+Testing ApplyStatus() Function
+Test 4
+No Status Effects
+Expected:No Effect
+
+Test 5
+Burn Effect with damage rate of 5
+HP is 100/100
+Expected:HP becomes 95/100
+
+Test 6
+Burn Effect with damage rate of 5
+HP is 5/100
+Expected:
+HP becomes 0
+Character is dead
+
+Test 7
+Burn Effect with damage rate of 5
+HP is 1/100
+Expected: HP becomes 0
+Character is dead
+
+Test 8
+Regen Effect with heal rate 
+of 5
+HP is 100/100
+Expected:No effect, HP already at max
+
+Test 9
+Regen Effect with heal rate of 5
+HP is 35/100
+Expected:HP becomes 40/100
+
+Test 10
+Stun Effect with 100% miss turn chance
+Expected:Player misses turn
+
+Test 11
+Stun Effect with 0% miss turn chance
+Expected:Player does not miss turn
+
+Test 12
+Stun Effect with 50% miss turn chance
+Expected:Mixture of player missing turn and not missing turn when executed several times.
+
+Test 13
+Burn Effect with damage rate of 5
+Heal Effect with heal rate of 5
+HP is 100/100
+Expected:
+
+The heal and burn effects should cancel out,
+Expected:HP should remain 100/100
+
+Test 14
+Burn Effect with damage rate of 5
+Heal Effect with heal rate of 5
+HP is 5/100
+Expected:The heal and burn effects should cancel out,
+HP should remain 5/100
+The character should not die
+
+Test 15
+Burn Effect with damage rate of 5
+Heal Effect with heal rate of 5
+HP is 1/100
+Expected:The heal and burn effects should cancel out,
+HP should remain 1/100
+The character should not die
+
+Test 16
+Burn Effect with damage rate of 5
+Heal Effect with heal rate of 5
+HP is 35/100
+Expected:The heal and burn effects should cancel out,
+HP should remain 35/100
+
+Test 17
+Burn Effect with damage rate of 5
+Heal Effect with heal rate of 5
+Stun Effect with 50% miss turn chance
+HP is 50/100
+Expected:HP should remain 50/100
+
+
