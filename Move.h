@@ -1,3 +1,5 @@
+#include "Character.h"
+
 #ifndef MOVE_H
 #define MOVE_H
 

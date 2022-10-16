@@ -21,16 +21,7 @@ Status_Move::Status_Move(std::string statusMoveName, int maxUses,
   statusAccuracy = acc;
 }
 
-void Status_Move::Execute(Character* Actor,
-                          Character* Target) {  // currently non-functional
-  // switch (statusName) {
-  // case "Burn":
-  // Status** newStatus = new BurnEffect * [1];
-  // newStatus[0] = new BurnEffect(status[0].damageRate,status[0].duration);
-  // case "Regen":
-  //  }
-  // Target[0].addStatus(newStatus);
-
+void Status_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
   int random = (0 + (rand() % 101)) * Actor[0].baseSpeed / Target[0].baseSpeed;

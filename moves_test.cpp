@@ -10,12 +10,16 @@
 int main() {
   srand(time(NULL));  // randomize seed
   // due to the randomness involved, these tests have to be checked by a human
-  
-  Move ** movesList = new Move*[4];
+
+  Status *burn = new BurnEffect(5, 3);
+  Status *paralysis = new StunEffect();
+
+  Move **movesList = new Move *[4];
   movesList[0] = new Attack_Move("basic_attack", 10, 10, 70);
   movesList[1] = new Heal_Move("basic_heal", 7, 20, 2);
-  movesList[2] = new Status_Move("generic_status", 5, nullptr, "a_status_condition", 100);
-  movesList[3] = new Special_Attack_Move("basic_special_attack", 2, 12, 100, nullptr, "a_status_condition", 50);
+  movesList[2] = new Status_Move("generic_status", 5, burn, "burn", 100);
+  movesList[3] = new Special_Attack_Move("basic_special_attack", 2, 12, 100,
+                                         paralysis, "stun", 50);
 
   Character *a, *b;
   a = new Character("Char1", 100, 20, 20, 50, 10, movesList, 4);
@@ -49,7 +53,10 @@ int main() {
 
   // test 3
   movesList[2]->Execute(a, b);
-  std::cout << std::endl;
+
+  b->ApplyStatus();
+
+  std::cout << b->HP << "/" << b->maxHP << std::endl << std::endl;
 
   // test 4
   movesList[3]->Execute(a, b);
