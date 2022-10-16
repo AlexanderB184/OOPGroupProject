@@ -1,12 +1,10 @@
 #include <string>
 using namespace std;
 
-
-
 #ifndef CHARACTER_H
 #define CHARACTER_H
-#include "Status.h"
 #include "Move.h"
+#include "Status.h"
 
 class Status;
 
@@ -37,13 +35,14 @@ class Character {
   ~Character();
   Character* clone();
   void ApplyStatus();
-  //Applies the effect of all Status effects a character has onto that character
+  // Applies the effect of all Status effects a character has onto that
+  // character
 
   void resetCharacter();
-  //Resets all the stats of a character
+  // Resets all the stats of a character
 
   void addStatus(Status* Effect);
-  //Adds a status to the character
+  // Adds a status to the character
 
   void removeStatus(int effectIndex);
   bool removeStatus(string effectType);

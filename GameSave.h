@@ -1,14 +1,14 @@
 #ifndef GAMESAVE_H
 #define GAMESAVE_H
 
-#include "Battle.h"
-#include "Controller.h"
-#include "ComputerController.h"
-#include "HumanController.h"
-#include "Character.h"
-
-#include <string>
 #include <iostream>
+#include <string>
+
+#include "Battle.h"
+#include "Character.h"
+#include "ComputerController.h"
+#include "Controller.h"
+#include "HumanController.h"
 
 class GameSave {
  public:
@@ -32,6 +32,5 @@ class GameSave {
   bool loadFromFile(string filename);
   bool saveToFile(string filename);
 };
-
 
 #endif

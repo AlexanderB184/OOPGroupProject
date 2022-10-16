@@ -5,7 +5,7 @@
 
 #include "Action.h"
 
-class Move: public Action {
+class Move : public Action {
  public:
   Move();
   void Reset_Uses();  // set remainingUses to initialUses

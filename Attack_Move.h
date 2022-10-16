@@ -1,8 +1,8 @@
 #ifndef ATTACK_MOVE_H
 #define ATTACK_MOVE_H
 
-#include "Move.h"
 #include "Character.h"
+#include "Move.h"
 
 class Attack_Move : public Move {
  public:

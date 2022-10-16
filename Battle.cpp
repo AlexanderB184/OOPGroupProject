@@ -15,10 +15,10 @@ Battle::Battle(Controller** _players, int _currentTurn) {
   currentTurn = _currentTurn;
 };
 
-Battle::~Battle() { 
-    if (players != nullptr) {
-      delete players;
-    }
+Battle::~Battle() {
+  if (players != nullptr) {
+    delete players;
+  }
 };
 
 void Battle::initBattle() {
@@ -28,7 +28,6 @@ void Battle::initBattle() {
 };
 
 void Battle::Turn() {
-  
   // These pointers exist for clarity
   // They do not need to be free since they point to already allocated memory
   // managed by a different object
@@ -39,17 +38,18 @@ void Battle::Turn() {
   Character* opposingCharacter = opposingPlayer[0].character;
 
   cout << "=========================" << endl;
-  cout << "Beginning of Player " << currentTurn+1 << "'s Turn" << endl;
+  cout << "Beginning of Player " << currentTurn + 1 << "'s Turn" << endl;
   cout << "=========================" << endl;
   cout << activeCharacter[0].Name << endl;
   cout << activeCharacter[0].HP << endl;
   cout << "=========================" << endl;
 
-  //Apply Status Effects
+  // Apply Status Effects
   cout << "Applying Status Effects" << endl;
   activeCharacter[0].ApplyStatus();
 
-  //If the player is dead or has flag "missNextTurn" then their turn is terminated here.
+  // If the player is dead or has flag "missNextTurn" then their turn is
+  // terminated here.
   if (activeCharacter[0].dead) {
     cout << "Turn terminated, Character Died" << endl;
     return;
@@ -59,27 +59,26 @@ void Battle::Turn() {
     return;
   }
 
-  //Getting the players action
+  // Getting the players action
   cout << "Generating Options" << endl;
   activePlayer[0].generateOptions();
   cout << "Getting Action" << endl;
   Action* selectedAction = activePlayer[0].getAction();
 
-  //Executing the players action
+  // Executing the players action
   cout << "Executing Action" << endl;
-  selectedAction[0].Execute(activeCharacter,
-                         opposingCharacter);
-  //Swapping whose turn it is                       
+  selectedAction[0].Execute(activeCharacter, opposingCharacter);
+  // Swapping whose turn it is
   currentTurn = !currentTurn;
   cout << "End of turn" << endl;
 };
 
 bool Battle::runBattle() {
-    //While both player's characters are alive keep looping Turn()
-    while(!players[0][0].character[0].dead && !players[1][0].character[0].dead) {
-      Turn();
-    }
-    //Once the loop has broken one players character has died, i.e. a player has lost
-    //Return if the losing character is player 1
-    return !players[0][0].character[0].dead;
+  // While both player's characters are alive keep looping Turn()
+  while (!players[0][0].character[0].dead && !players[1][0].character[0].dead) {
+    Turn();
+  }
+  // Once the loop has broken one players character has died, i.e. a player has
+  // lost Return if the losing character is player 1
+  return !players[0][0].character[0].dead;
 }
