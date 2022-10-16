@@ -184,6 +184,7 @@ void Character::resetCharacter() {
   StatusEffect = nullptr;
   numberOfEffects = 0;
   for (int iMove = 0; iMove < numberOfMoves; iMove++) {
+
     Moveset[iMove][0].remainingUses = Moveset[iMove][0].initialUses;
   }
 };

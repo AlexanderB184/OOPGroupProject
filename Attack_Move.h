@@ -10,7 +10,9 @@ class Attack_Move : public Move {
   Attack_Move(std::string attackName, int maxUses, int pow, int acc);
   void Execute(Character* Actor, Character* Target);
   Attack_Move* clone();
-  int damage;
+  
+  int damage;    // amount of damage the move does when attack and defence are
+                 // equal
   int accuracy;  // number from 1-100 representing the chance of success as a
                  // percentage
 };
