@@ -9,6 +9,7 @@ class Special_Attack_Move : public Move {
   Special_Attack_Move(std::string attackName, int maxUses, int pow, int acc,
                       Status* _status, std::string _statusName, int statusAcc);
   void Execute(Character* Actor, Character* Target);
+  Special_Attack_Move* clone();
 
   int damage;    // amount of damage the move does when attack and defence are
                  // equal

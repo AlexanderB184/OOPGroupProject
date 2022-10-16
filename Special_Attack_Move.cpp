@@ -29,6 +29,12 @@ Special_Attack_Move::Special_Attack_Move(std::string attackName, int maxUses,
   statusAccuracy = statusAcc;
 }
 
+Special_Attack_Move* Special_Attack_Move::clone() {
+  Special_Attack_Move* clonedSpecial = new Special_Attack_Move(
+      name, initialUses, damage, accuracy, status, statusName, statusAccuracy);
+  return clonedSpecial;
+}
+
 void Special_Attack_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 

@@ -17,10 +17,16 @@ Status_Move::Status_Move(std::string statusMoveName, int maxUses,
                          Status* _status, std::string _statusName, int acc) {
   name = statusMoveName;
   initialUses = maxUses;
-  remainingUses = maxUses; // remaining uses always starts at the maximum
+  remainingUses = maxUses;  // remaining uses always starts at the maximum
   status = _status;
   statusName = _statusName;
   statusAccuracy = acc;
+}
+
+Status_Move* Status_Move::clone() {
+  Status_Move* clonedStatus =
+      new Status_Move(name, initialUses, status, statusName, statusAccuracy);
+  return clonedStatus;
 }
 
 void Status_Move::Execute(Character* Actor, Character* Target) {
