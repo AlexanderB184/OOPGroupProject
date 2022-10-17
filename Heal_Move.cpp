@@ -17,7 +17,7 @@ Heal_Move::Heal_Move(std::string healName, int maxUses, int restoreAmount,
   initialUses = maxUses;
   remainingUses = maxUses;  // remaining uses always starts at the maximum
   healAmount = restoreAmount;
-  maxCoolDown = coolDown;
+  maxCoolDown = coolDown; // remove this
   remainingCoolDown = 0;  // a heal_move's cooldown always starts at 0 (can be
                           // used immedietly on the first turn of battle)
 }
@@ -45,6 +45,6 @@ void Heal_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " recovered " << healAmount + Actor[0].baseHeal
             << " health" << std::endl;
 
-  remainingCoolDown = maxCoolDown;
+  remainingCoolDown = maxCoolDown; // remove this
   remainingUses--;
 }
