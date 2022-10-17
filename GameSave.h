@@ -12,6 +12,7 @@
 
 class GameSave {
  public:
+  // Prefab Characters, Moves and Items
   Character** PossibleCharacters;
   int nPossibleCharacters;
   Move** PossibleMoves;
@@ -19,17 +20,16 @@ class GameSave {
   Item** PossibleItems;
   int nPossibleItems;
 
-  Battle OngoingBattle;
-  Controller** Players;
-  Character* Character1;
-  Character* Character2;
+  GameSave();   // Constructor creates the prefab objects
+  ~GameSave();  // Deconstructer deletes the prefab objects
 
-  GameSave();
-  ~GameSave();
-
+  // Asks the user to select a character and returns the character they select
   Character* selectCharacter();
 
+  // Loads a game save from a file and returns the character saved in the file
   Character* loadFromFile(string filename);
+
+  // Saves the current character to file
   bool saveToFile(string filename, string);
 };
 

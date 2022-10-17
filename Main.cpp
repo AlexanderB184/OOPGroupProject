@@ -48,7 +48,8 @@ int main(void) {
     cout << "What save do you want to load?" << endl;
     string filename;
     cin >> filename;
-    Players[0] = new HumanController(game[0].loadFromFile(filename), nullptr, 0);
+    Players[0] =
+        new HumanController(game[0].loadFromFile(filename), nullptr, 0);
   }
 
   Players[1] = new ComputerController(
@@ -67,12 +68,12 @@ int main(void) {
     cout << "Would you like to save your progress?" << endl;
     string option = "";
     cin >> option;
-    if (option == "Y" || option == "y" || option == "yes")  {
+    if (option == "Y" || option == "y" || option == "yes") {
       cout << "Would you like to save your progress?" << endl;
       string filename;
       cout << "Name your save" << endl;
       cin >> filename;
-      game[0].saveToFile(filename,Players[0][0].character[0].Name);
+      game[0].saveToFile(filename, Players[0][0].character[0].Name);
     }
 
     if (winner) {

@@ -1,12 +1,13 @@
-#include <fstream>
-
 #include "GameSave.h"
+
+#include <fstream>
 
 #include "Attack_Move.h"
 #include "Heal_Move.h"
 #include "Status_Move.h"
 
 GameSave::GameSave() {
+  // Create list of Prefab Moves
   nPossibleMoves = 5;
   PossibleMoves = new Move*[nPossibleMoves];
   PossibleMoves[0] = new Attack_Move("Stab", 1000, 35, 85);
@@ -15,6 +16,7 @@ GameSave::GameSave() {
   PossibleMoves[3] = new Heal_Move("Meditate", 5, 50);
   Status* statusEffect = new BurnEffect(10, 10);
   PossibleMoves[4] = new Status_Move("Burn", 5, statusEffect, "Burn", 100);
+  // Create list of Prefab Characters
   nPossibleCharacters = 4;
   PossibleCharacters = new Character*[nPossibleCharacters];
   int Moves1[3] = {0, 1, 3};
@@ -29,43 +31,55 @@ GameSave::GameSave() {
   int Moves4[3] = {0, 2, 3};
   PossibleCharacters[3] =
       new Character("Mark", 100, 50, 50, 50, 50, PossibleMoves, Moves4, 3);
-
-  Character1 = nullptr;
-  Character2 = nullptr;
-  Players = new Controller*[2];
-  Players[0] = new HumanController(nullptr, nullptr, 0);
-  Players[1] = new ComputerController(nullptr, nullptr, 0);
-  OngoingBattle = Battle(Players, 0);
+  // Prefab Items
 };
 
 GameSave::~GameSave() {
-  delete Players[0];
-  delete Players[1];
-  delete Players;
-  delete Character1;
-  delete Character2;
+  // Delete list of prefab Characters
+  for (int iChar = 0; iChar < nPossibleCharacters; iChar++) {
+    delete PossibleCharacters[iChar];
+  }
+  delete PossibleCharacters;
+
+  // Delete list of prefab Moves
+  for (int iMove = 0; iMove < nPossibleMoves; iMove++) {
+    delete PossibleMoves[iMove];
+  }
+  delete PossibleMoves;
+
+  // Delete list of prefab Items
+  for (int iItem = 0; iItem < nPossibleItems; iItem++) {
+    delete PossibleItems[iItem];
+  }
+  delete PossibleItems;
 };
 
 Character* GameSave::loadFromFile(string filename) {
-  // Items
+  // Open Save file with name provided
   ifstream saveFile;
   saveFile.open(filename + ".txt");
   string characterName;
+  // Extract Character name from file
   saveFile >> characterName;
   saveFile.close();
-  for (int iChar = 0; iChar < nPossibleCharacters; iChar ++) {
+  // Run through list of characters and find which one has that name
+  for (int iChar = 0; iChar < nPossibleCharacters; iChar++) {
     if (characterName == PossibleCharacters[iChar]->Name) {
+      // Clone and return that character
       return PossibleCharacters[iChar][0].clone();
     }
   }
+  // If the character isn't found return a nullpointer.
   return nullptr;
 };
 
-bool GameSave::saveToFile(string filename, string characterName){
-  // Write names to file
+bool GameSave::saveToFile(string filename, string characterName) {
+  // Open file with name provided
   ofstream saveFile;
   saveFile.open(filename + ".txt");
+  // Save characters name into file
   saveFile << characterName;
+  // Close file
   saveFile.close();
   return true;
 };
@@ -73,6 +87,7 @@ bool GameSave::saveToFile(string filename, string characterName){
 Character* GameSave::selectCharacter() {
   cout << "Select a character" << endl;
   cout << "==================" << endl;
+  // Loop through all possible characters and display their stats
   for (int iChar = 0; iChar < nPossibleCharacters; iChar++) {
     cout << "Character " << iChar + 1 << endl;
     cout << "Name: " << PossibleCharacters[iChar][0].Name << endl;
@@ -83,17 +98,23 @@ Character* GameSave::selectCharacter() {
     cout << "Heal: " << PossibleCharacters[iChar][0].baseHeal << endl;
     cout << "==================" << endl;
   }
-  string option = "new";
-  bool isValid = false;
-  while (!isValid) {
-    cin >> option;
+  // Get a user input
+  string selectedCharacter = "";
+  bool isValid = false;  // Test if input if valid
+  while (!isValid) {     // Keep asking until user provides valid input
+    cin >> selectedCharacter;
+    // Loop through all possible characters and test if user input is name of
+    // the character
     for (int iChar = 0; iChar < nPossibleCharacters; iChar++) {
-      if (option == PossibleCharacters[iChar][0].Name) {
+      if (selectedCharacter == PossibleCharacters[iChar][0].Name) {
+        // If the user input matches the prefabe characters name then return a
+        // clone of this character
         isValid = true;
         return PossibleCharacters[iChar][0].clone();
       }
     }
-    if (!isValid) {
+    if (!isValid) {  // If user input matched no valid input tell the user to
+                     // try again
       cout << "Please enter a valid option" << endl;
     }
   }
