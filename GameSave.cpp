@@ -2,14 +2,17 @@
 
 #include "Attack_Move.h"
 #include "Heal_Move.h"
+#include "Status_Move.h"
 
 GameSave::GameSave() {
-  nPossibleMoves = 4;
+  nPossibleMoves = 5;
   PossibleMoves = new Move*[nPossibleMoves];
   PossibleMoves[0] = new Attack_Move("Stab", 1000, 35, 85);
   PossibleMoves[1] = new Attack_Move("Slash", 1000, 20, 90);
   PossibleMoves[2] = new Attack_Move("Shoot", 6, 65, 60);
   PossibleMoves[3] = new Heal_Move("Meditate", 5, 50, 2);
+  Status* statusEffect = new BurnEffect(10, 10);
+  PossibleMoves[4] = new Status_Move("Burn", 5, statusEffect, "Burn", 100);
   nPossibleCharacters = 4;
   PossibleCharacters = new Character*[nPossibleCharacters];
   int Moves1[3] = {0, 1, 3};
@@ -18,7 +21,7 @@ GameSave::GameSave() {
   int Moves2[3] = {1, 2, 3};
   PossibleCharacters[1] =
       new Character("Jane", 200, 40, 75, 30, 50, PossibleMoves, Moves2, 3);
-  int Moves3[3] = {1, 2, 3};
+  int Moves3[3] = {1, 4, 3};
   PossibleCharacters[2] =
       new Character("T", 50, 75, 40, 100, 20, PossibleMoves, Moves3, 3);
   int Moves4[3] = {0, 2, 3};

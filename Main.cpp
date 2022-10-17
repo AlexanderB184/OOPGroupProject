@@ -22,15 +22,11 @@ using namespace std;
 
 int main(void) {
   srand(time(NULL));
-
-  Status** newStatus = new Status*[1];
-  newStatus[0] = new BurnEffect();
-  newStatus[0][0].damageRate;
   // Splash Screen
-  cout << "Press Enter to Begin" << endl;
-  cin;
-  cout << "Do you want to Load a game or Start a new game?" << endl;
   string option = "new";
+  cout << "Press Enter to Begin" << endl;
+  cin >> option;
+  cout << "Do you want to Load a game or Start a new game?" << endl;
   bool isValid = false;
   while (!isValid) {
     cin >> option;
@@ -53,8 +49,58 @@ int main(void) {
   Players[1] = new ComputerController(
       game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters], nullptr,
       0);
+  bool endRematch = false;
   Battle battle = Battle(Players, 0);
-  battle.initBattle();
-  bool winner = battle.runBattle();
+  while (!endRematch) {
+    battle.initBattle();
+    bool winner = battle.runBattle();
+    if (winner) {
+      cout << "Congratulations, you won!" << endl;
+    } else {
+      cout << "You lost." << endl;
+    }
+    cout << "Would you like to save your progress?" << endl;
+    string option = "";
+    cin >> option;
+    if (option == "Y" || option == "y" || option == "yes")  {
+      cout << "Would you like to save your progress?" << endl;
+      string filename;
+      cout << "Name your save" << endl;
+      cin >> filename;
+      game[0].saveToFile(filename);
+    }
+
+    if (winner) {
+      cout << "Would you like to start a new battle?" << endl;
+      string option;
+      cin >> option;
+      if (option == "Y" || option == "y" || option == "yes") {
+        delete Players[1];
+        Players[1] = new ComputerController(
+            game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters],
+            nullptr, 0);
+      } else {
+        endRematch = true;
+      }
+    } else {
+      cout << "Would you like a rematch?" << endl;
+      string option;
+      cin >> option;
+      if (option == "N" || option == "n" || option == "no") {
+        cout << "Would you like to start a new battle?" << endl;
+        cin >> option;
+        if (option == "Y" || option == "y" || option == "yes") {
+          delete Players[1];
+          Players[1] = new ComputerController(
+              game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters],
+              nullptr, 0);
+        } else {
+          endRematch = true;
+        }
+      } else if (option == "Y" || option == "y" || option == "yes") {
+        endRematch = false;
+      }
+    }
+  }
   return 0;
 }
