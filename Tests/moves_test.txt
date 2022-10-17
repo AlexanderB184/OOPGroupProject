@@ -7,4 +7,15 @@ Test 6: Killing with a Special_Attack_Move (and attempting to inflict status on 
 
 All tests also test the random chance to miss
 
+Initial version: tests 1 and 2
+
+It was subsequently updated to include test 3, and then 4. This also required
+a rework to match the updated version of the character class.
+
+Final update added tests 5 and 6
+
+Test 6 had a problem with inflicting a status condition on a non-killing blow.
+It turns out that the accuracy check was accidentally implemented backwards.
+This has been fixed.
+
 As of 17/10/22, all 6 tests work as intended
