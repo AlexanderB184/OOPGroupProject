@@ -25,7 +25,7 @@ Character::Character(string characterName) {
     Moveset = new Move*[3];
     Moveset[0] = new Attack_Move("Stab", 1000, 25, 80);
     Moveset[1] = new Attack_Move("Throw Knife", 1, 100, 20);
-    Moveset[2] = new Heal_Move("Crack Open a cold One", 6, 30, 2);
+    Moveset[2] = new Heal_Move("Crack Open a cold One", 6, 30);
     numberOfMoves = 3;
   } else if (characterName == "Jane") {
     // Tank
@@ -43,7 +43,7 @@ Character::Character(string characterName) {
     Moveset = new Move*[3];
     Moveset[0] = new Attack_Move("Slap", 1000, 30, 80);
     Moveset[1] = new Attack_Move("Body Slam", 5, 50, 20);
-    Moveset[2] = new Heal_Move("Inject Substances", 6, 30, 5);
+    Moveset[2] = new Heal_Move("Inject Substances", 6, 30);
     numberOfMoves = 3;
   } else if (characterName == "T") {
     // Healer
@@ -59,8 +59,8 @@ Character::Character(string characterName) {
     missNextTurn = false;
     dead = false;
     Moveset = new Move*[2];
-    Moveset[0] = new Heal_Move("T", 1, 100, 0);
-    Moveset[1] = new Heal_Move("t", 100, 30, 0);
+    Moveset[0] = new Heal_Move("T", 1, 100);
+    Moveset[1] = new Heal_Move("t", 100, 30);
     numberOfMoves = 2;
   } else if (characterName == "Mark") {
     // Average Joe
@@ -77,7 +77,7 @@ Character::Character(string characterName) {
     dead = false;
     Moveset = new Move*[2];
     Moveset[0] = new Attack_Move("Average attack", 1000, 30, 85);
-    Moveset[1] = new Heal_Move("Average heal", 1000, 35, 2);
+    Moveset[1] = new Heal_Move("Average heal", 1000, 35);
     numberOfMoves = 2;
   }
 }

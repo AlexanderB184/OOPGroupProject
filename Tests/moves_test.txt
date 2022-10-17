@@ -18,4 +18,6 @@ Test 6 had a problem with inflicting a status condition on a non-killing blow.
 It turns out that the accuracy check was accidentally implemented backwards.
 This has been fixed.
 
+Updated again to remove cooldown variables from Heal_Move
+
 As of 17/10/22, all 6 tests work as intended

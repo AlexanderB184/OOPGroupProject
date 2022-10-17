@@ -17,7 +17,7 @@ int main() {
 
   Move **movesList = new Move *[4];
   movesList[0] = new Attack_Move("basic_attack", 10, 10, 70);
-  movesList[1] = new Heal_Move("basic_heal", 7, 20, 2);
+  movesList[1] = new Heal_Move("basic_heal", 7, 20);
   movesList[2] = new Status_Move("generic_status", 5, burn, "burn", 100);
   movesList[3] = new Special_Attack_Move("basic_special_attack", 2, 12, 100,
                                          paralysis, "stun", 100);
