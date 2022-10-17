@@ -12,7 +12,7 @@ GameSave::GameSave() {
   PossibleMoves[0] = new Attack_Move("Stab", 1000, 35, 85);
   PossibleMoves[1] = new Attack_Move("Slash", 1000, 20, 90);
   PossibleMoves[2] = new Attack_Move("Shoot", 6, 65, 60);
-  PossibleMoves[3] = new Heal_Move("Meditate", 5, 50, 2);
+  PossibleMoves[3] = new Heal_Move("Meditate", 5, 50);
   Status* statusEffect = new BurnEffect(10, 10);
   PossibleMoves[4] = new Status_Move("Burn", 5, statusEffect, "Burn", 100);
   nPossibleCharacters = 4;

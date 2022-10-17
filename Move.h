@@ -8,7 +8,7 @@
 class Move : public Action {
  public:
   void Reset_Uses();  // set remainingUses to initialUses
-  virtual Move* clone() = 0;
+  virtual Move* clone() = 0; // Makes a clone object
   
   int remainingUses;
   int initialUses;

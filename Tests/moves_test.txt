@@ -1,0 +1,23 @@
+Test 1: Attack_Move and Heal_Move (when exceeding full health)
+Test 2: Attack_Move and Heal_Move (when not exceeding full health)
+Test 3: Applying a status condition with Status_Move
+Test 4: Attacking and applying a status condition with Special_Attack_Move
+Test 5: Killing with an Attack_Move (and attacking a zero HP Target)
+Test 6: Killing with a Special_Attack_Move (and attempting to inflict status on a killing blow)
+
+All tests also test the random chance to miss
+
+Initial version: tests 1 and 2
+
+It was subsequently updated to include test 3, and then 4. This also required
+a rework to match the updated version of the character class.
+
+Final update added tests 5 and 6
+
+Test 6 had a problem with inflicting a status condition on a non-killing blow.
+It turns out that the accuracy check was accidentally implemented backwards.
+This has been fixed.
+
+Updated again to remove cooldown variables from Heal_Move
+
+As of 17/10/22, all 6 tests work as intended
