@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -43,9 +44,13 @@ int main(void) {
   if (option == "new") {
     Players[0] = new HumanController(game[0].selectCharacter(), nullptr, 0);
 
-  } else {
-    // Blank
+  } else if (option == "load") {
+    cout << "What save do you want to load?" << endl;
+    string filename;
+    cin >> filename;
+    Players[0] = new HumanController(game[0].loadFromFile(filename), nullptr, 0);
   }
+
   Players[1] = new ComputerController(
       game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters], nullptr,
       0);
@@ -67,7 +72,7 @@ int main(void) {
       string filename;
       cout << "Name your save" << endl;
       cin >> filename;
-      game[0].saveToFile(filename);
+      game[0].saveToFile(filename,Players[0][0].character[0].Name);
     }
 
     if (winner) {

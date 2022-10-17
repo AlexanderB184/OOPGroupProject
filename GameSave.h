@@ -29,8 +29,8 @@ class GameSave {
 
   Character* selectCharacter();
 
-  bool loadFromFile(string filename);
-  bool saveToFile(string filename);
+  Character* loadFromFile(string filename);
+  bool saveToFile(string filename, string);
 };
 
 #endif

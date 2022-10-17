@@ -1,3 +1,5 @@
+#include <fstream>
+
 #include "GameSave.h"
 
 #include "Attack_Move.h"
@@ -27,7 +29,6 @@ GameSave::GameSave() {
   int Moves4[3] = {0, 2, 3};
   PossibleCharacters[3] =
       new Character("Mark", 100, 50, 50, 50, 50, PossibleMoves, Moves4, 3);
-  cout << PossibleCharacters[2][0].Moveset[0][0].name << endl;
 
   Character1 = nullptr;
   Character2 = nullptr;
@@ -45,17 +46,28 @@ GameSave::~GameSave() {
   delete Character2;
 };
 
-bool GameSave::loadFromFile(string filename) {
-  string data;
-  string name = "Bob";
-  string name2 = "Jane";
-  Character1 = new Character(name);
-  Character2 = new Character(name2);
+Character* GameSave::loadFromFile(string filename) {
   // Items
+  ifstream saveFile;
+  saveFile.open(filename + ".txt");
+  string characterName;
+  saveFile >> characterName;
+  saveFile.close();
+  for (int iChar = 0; iChar < nPossibleCharacters; iChar ++) {
+    if (characterName == PossibleCharacters[iChar]->Name) {
+      return PossibleCharacters[iChar][0].clone();
+    }
+  }
+  return nullptr;
 };
 
-bool GameSave::saveToFile(string filename){
-    // Write names to file
+bool GameSave::saveToFile(string filename, string characterName){
+  // Write names to file
+  ofstream saveFile;
+  saveFile.open(filename + ".txt");
+  saveFile << characterName;
+  saveFile.close();
+  return true;
 };
 
 Character* GameSave::selectCharacter() {
