@@ -1,13 +1,14 @@
+#include "Character.h"
+#include "Status.h"
+#include "Action.h"
+
+
 #ifndef USEITEM_H
 #define USEITEM_H
-
+#include "Item.h"
 #include <string>
 
-#include "Action.h"
-#include "Battle.h"
-#include "Character.h"
-#include "Item.h"
-#include "Status.h"
+
 
 using namespace std;
 
@@ -29,7 +30,7 @@ class UseCureItem : public UseItem {
 
  public:
   // Declares function
-  UseCureItem(string, int);
+  UseCureItem(string, string, int);
   void Execute(Character* Target, Character* Actor);
   UseCureItem* clone();
 };
@@ -42,7 +43,7 @@ class UseHealItem : public UseItem {
 
  public:
   // Declares function
-  UseHealItem(int, int);
+  UseHealItem(string,int, int);
   void Execute(Character* Target, Character* Actor);
   UseHealItem* clone();
 };
@@ -55,7 +56,7 @@ class UseStatusItem : public UseItem {
 
  public:
   // Declares function
-  UseStatusItem(Status* status, int);
+  UseStatusItem(string, Status* status, int);
   void Execute(Character* Target, Character* Actor);
   UseStatusItem* clone();
 };

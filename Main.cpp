@@ -54,12 +54,12 @@ int main(void) {
     cin >> filename;
     Players[0] = new HumanController(
         game[0].loadFromFile(filename),
-        game[0].PossibleItems[rand() % game[0].nPossibleItems], 1);
+        game[0].PossibleItems[rand() % game[0].nPossibleItems][0].clone(), 1);
   }
 
   Players[1] = new ComputerController(
       game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters],
-      game[0].PossibleItems[rand() % game[0].nPossibleItems], 1);
+      game[0].PossibleItems[rand() % game[0].nPossibleItems][0].clone(), 1);
   bool endRematch = false;
   Battle battle = Battle(Players, 0);
   while (!endRematch) {
@@ -89,7 +89,7 @@ int main(void) {
         delete Players[1];
         Players[1] = new ComputerController(
             game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters],
-            nullptr, 0);
+            game[0].PossibleItems[rand() % game[0].nPossibleItems][0].clone(), 1);
       } else {
         endRematch = true;
       }
