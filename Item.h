@@ -2,7 +2,6 @@
 #define ITEM_H
 
 #include <string>
-//#include "UseItem.h"
 class UseItem;
 
 using namespace std;

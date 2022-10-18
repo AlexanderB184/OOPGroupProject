@@ -36,12 +36,10 @@ class UseCureItem : public UseItem {
 // Class definition for UseHealItem class
 class UseHealItem: public UseItem {
   private:
-   // Declares variables
+   // Declares variable
    int healAmount;
-   int cooldown;
   public:
    // Declares function
-   //void getVal(Battle* currentTurn)
    void Execute(string name, Character* Target, Character* Actor);
 };
 
@@ -49,7 +47,7 @@ class UseHealItem: public UseItem {
 class UseStatusItem : public UseItem {
  private:
   // Declares variables
-  Status* StatusEffect;
+  Status* statusEffect;
  public:
   // Declares function
   void Execute(string name, Character* Target, Character* Actor);
