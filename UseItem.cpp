@@ -33,6 +33,7 @@ void UseCureItem::Execute(Character* Target, Character* Actor) {
     // Tells user if characters does not possess status.
     cout << "This has no effect." << endl;
   }
+  quantity--;
 }
 
 // implementation of the UseHealItem function
@@ -46,6 +47,7 @@ void UseHealItem::Execute(Character* Target, Character* Actor) {
     // If hp over max, reduces it back to max
     Target[0].HP = Target[0].maxHP;
   }
+  quantity--;
 }
 
 // implementation of the UseHealItem function
@@ -57,6 +59,7 @@ void UseStatusItem::Execute(Character* Target, Character* Actor) {
   // Informs user what happened on item use.
   cout << "The " << statusEffect[0].statusType << " was applied to "
        << Target[0].Name << "." << endl;
+  quantity--;
 }
 
 UseCureItem::UseCureItem(string _name, string _statusToRemove, int _quantity) {
