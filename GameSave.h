@@ -19,6 +19,8 @@ class GameSave {
   int nPossibleMoves;
   Item** PossibleItems;
   int nPossibleItems;
+  UseItem** PossibleItemActions;
+  int nPossibleItemActions;
 
   GameSave();   // Constructor creates the prefab objects
   ~GameSave();  // Deconstructer deletes the prefab objects

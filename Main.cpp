@@ -20,6 +20,8 @@ using namespace std;
 #include "Move.h"
 #include "Status.h"
 #include "UI.h"
+#include "UseItem.h"
+#include "Item.h"
 
 int main(void) {
   srand(time(NULL));
@@ -42,19 +44,22 @@ int main(void) {
   Controller** Players = new Controller*[2];
 
   if (option == "new") {
-    Players[0] = new HumanController(game[0].selectCharacter(), nullptr, 0);
+    Players[0] = new HumanController(
+        game[0].selectCharacter(),
+        game[0].PossibleItems[rand() % game[0].nPossibleItems], 1);
 
   } else if (option == "load") {
     cout << "What save do you want to load?" << endl;
     string filename;
     cin >> filename;
-    Players[0] =
-        new HumanController(game[0].loadFromFile(filename), nullptr, 0);
+    Players[0] = new HumanController(
+        game[0].loadFromFile(filename),
+        game[0].PossibleItems[rand() % game[0].nPossibleItems][0].clone(), 1);
   }
 
   Players[1] = new ComputerController(
-      game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters], nullptr,
-      0);
+      game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters],
+      game[0].PossibleItems[rand() % game[0].nPossibleItems][0].clone(), 1);
   bool endRematch = false;
   Battle battle = Battle(Players, 0);
   while (!endRematch) {
@@ -84,7 +89,7 @@ int main(void) {
         delete Players[1];
         Players[1] = new ComputerController(
             game[0].PossibleCharacters[rand() % game[0].nPossibleCharacters],
-            nullptr, 0);
+            game[0].PossibleItems[rand() % game[0].nPossibleItems][0].clone(), 1);
       } else {
         endRematch = true;
       }

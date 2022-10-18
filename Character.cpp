@@ -8,80 +8,6 @@ using namespace std;
 #include "Move.h"
 #include "Status.h"
 
-Character::Character(string characterName) {
-  if (characterName == "Bob") {
-    // Ninja
-    Name = "Bob";
-    HP = 50;
-    maxHP = 50;
-    baseAtt = 75;
-    baseDef = 40;
-    baseSpeed = 100;
-    baseHeal = 20;
-    StatusEffect = nullptr;
-    numberOfEffects = 0;
-    missNextTurn = false;
-    dead = false;
-    Moveset = new Move*[3];
-    Moveset[0] = new Attack_Move("Stab", 1000, 25, 80);
-    Moveset[1] = new Attack_Move("Throw Knife", 1, 100, 20);
-    Moveset[2] = new Heal_Move("Crack Open a cold One", 6, 30);
-    numberOfMoves = 3;
-  } else if (characterName == "Jane") {
-    // Tank
-    Name = "Jane";
-    HP = 250;
-    maxHP = 250;
-    baseAtt = 45;
-    baseDef = 100;
-    baseSpeed = 20;
-    baseHeal = 40;
-    StatusEffect = nullptr;
-    numberOfEffects = 0;
-    missNextTurn = false;
-    dead = false;
-    Moveset = new Move*[3];
-    Moveset[0] = new Attack_Move("Slap", 1000, 30, 80);
-    Moveset[1] = new Attack_Move("Body Slam", 5, 50, 20);
-    Moveset[2] = new Heal_Move("Inject Substances", 6, 30);
-    numberOfMoves = 3;
-  } else if (characterName == "T") {
-    // Healer
-    Name = "T";
-    HP = 100;
-    maxHP = 100;
-    baseAtt = 25;
-    baseDef = 70;
-    baseSpeed = 60;
-    baseHeal = 100;
-    StatusEffect = nullptr;
-    numberOfEffects = 0;
-    missNextTurn = false;
-    dead = false;
-    Moveset = new Move*[2];
-    Moveset[0] = new Heal_Move("T", 1, 100);
-    Moveset[1] = new Heal_Move("t", 100, 30);
-    numberOfMoves = 2;
-  } else if (characterName == "Mark") {
-    // Average Joe
-    Name = "Mark";
-    HP = 100;
-    maxHP = 100;
-    baseAtt = 50;
-    baseDef = 50;
-    baseSpeed = 50;
-    baseHeal = 50;
-    StatusEffect = nullptr;
-    numberOfEffects = 0;
-    missNextTurn = false;
-    dead = false;
-    Moveset = new Move*[2];
-    Moveset[0] = new Attack_Move("Average attack", 1000, 30, 85);
-    Moveset[1] = new Heal_Move("Average heal", 1000, 35);
-    numberOfMoves = 2;
-  }
-}
-
 Character::Character() {
   Name = "";
   HP = 100;
@@ -184,7 +110,6 @@ void Character::resetCharacter() {
   StatusEffect = nullptr;
   numberOfEffects = 0;
   for (int iMove = 0; iMove < numberOfMoves; iMove++) {
-
     Moveset[iMove][0].remainingUses = Moveset[iMove][0].initialUses;
   }
 };

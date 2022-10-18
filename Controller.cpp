@@ -1,10 +1,12 @@
 #include "Controller.h"
 
+#include <iostream>
 #include <string>
 
 #include "Action.h"
 #include "Item.h"
 #include "Move.h"
+#include "UseItem.h"
 
 using namespace std;
 
@@ -17,7 +19,7 @@ void Controller::generateOptions() {
 
   // Calculate the number of options availavle to a character
 
-  actionOptions = new Action*[numberOfOptions];
+  actionOptions = new Action*[character[0].numberOfMoves + numberOfItems];
 
   int iOption = 0;
 
@@ -28,11 +30,13 @@ void Controller::generateOptions() {
       iOption++;
     }
   }
-
+  cout << "Problem here" << endl;
   // add item actions to Action Options
   for (int iItem = 0; iItem < numberOfItems; iItem++) {
-    actionOptions[iOption] = inventory[iItem].action;
-    iOption++;
+    if (inventory[iItem].action[0].quantity > 0) {
+      actionOptions[iOption] = inventory[iItem].action;
+      iOption++;
+    }
   }
   numberOfOptions = iOption;
 };

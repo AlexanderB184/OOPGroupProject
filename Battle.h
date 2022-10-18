@@ -13,9 +13,10 @@ class Battle {
   Controller** players;
   int currentTurn;
 
-  Battle();
-  Battle(Controller**, int);
-  ~Battle();
+  Battle();  // Empty constructor
+  Battle(Controller**,
+         int);  // Contructor takes in a list of 2 players and whose turn it is
+  ~Battle();    // Deconstructor destroys the information contained
 
   void initBattle();
   // resets everything to its initial value
