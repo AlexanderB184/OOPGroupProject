@@ -1,119 +1,116 @@
+#include "UseItem.h"
+
 #include <iostream>
 #include <string>
-#include "UseItem.h"
-#include "Item.h"
+
 #include "Action.h"
 #include "Character.h"
+#include "Item.h"
 #include "Status.h"
 
 using namespace std;
 
-// implementation of the UseItem function
-UseItem::UseItem() {
-  name = "Unnamed";
-  type = "No Type";
-  quantity = 0;
-}
+UseStatusItem::~UseStatusItem() { delete statusEffect; }
 
-UseItem::UseItem(string name, string type, int quantity, Character* Target, Character* Actor){
-  // Determines what function is used based on type
-  // Runs function for cure items
-  if (type == "Cure"){
-    // Runs cure item function
-    UseCureItem::Execute(name, Target, Actor);
-  // Runs function for heal items
-  } else if (type == "Heal"){
-    // Runs heal item function
-    UseHealItem::Execute(name, Target, Actor);
-  // Runs function for status items
-  } else if (type == "Status"){
-    // Runs status item function
-    UseStatusItem::Execute(name, Target, Actor);
-  // Runs if all types fail
-  } else {
-    // Informs user that an error has occured in the type variable.
-    cout << "Invalid item type error occured!" << endl;
-  }
-}
-
-// Implementation of the default UseItem deconstructor
-UseItem::~UseItem(){};
-
-// implementation of the UseCureItem function
-void UseCureItem::Execute(string name, Character* Target, Character* Actor){
-
-  // Determines what item is used of cure type based on name.
-  // Cure for stun effect, sets status to removes as stun.
-  if (name == "Stun Cure") {
-    statusToRemove = "Stun";
-  // Cure for burn effect, sets status to remove as burn.
-  } else if (name == "Burn Cure") {
-    statusToRemove = "Burn";
-  // Case if invalid option occurs
-  } else {
-    cout << "Invalid item name" << endl;
-  }
-
+// Implementation of the UseCureItem function
+void UseCureItem::Execute(Character* Target, Character* Actor) {
+  cout << Actor[0].Name << " used " << name << "." << endl;
   // Checks if status effect is active
   bool check = true;
   // Loops through all current status effects
   for (int i = 0; i < Target[0].numberOfEffects; i++) {
-    if (Target[0].StatusEffect[i] == statusToRemove) {
+    if (Target[0].StatusEffect[i][0].statusType == statusToRemove) {
       // Removes effect from character
       Target[0].removeStatus(i);
       // Informs user what happened
       cout << "The " << statusToRemove << " status effect was removed from "
-           << Target << "." << endl;
+           << Target[0].Name << "." << endl;
       check = false;
     }
   }
   // Runs if status effect removed is not present on character.
-  if (check == true){
+  if (check == true) {
     // Tells user if characters does not possess status.
-    cout << "The " << name << " has no effect." << endl;
+    cout << "This has no effect." << endl;
   }
+  // Decreases quantity by 1
+  quantity--;
 }
 
 // implementation of the UseHealItem function
-void UseHealItem::Execute(string name, Character* Target, Character* Actor) {
-
-  // Decides amount healed based on item name
-  // For full heal item
-  if (name == "Full Heal"){
-    healAmount = Target[0].maxHP;
-  // For set amount heal item
-  } else if (name == "Basic Heal") {
-    healAmount = 40;
-  // Informs user an invalid item name is present
-  } else {
-    cout << "Invalid item name." << endl;
-  }
-
+void UseHealItem::Execute(Character* Target, Character* Actor) {
+  cout << Actor[0].Name << " used " << name << endl;
   // Adds healAmount to character's hp
   Target[0].HP = Target[0].HP + healAmount;
+  cout << Target[0].Name << " healed " << healAmount << " health" << endl;
   // Checks if hp has gone over max
   if (Target[0].HP > Target[0].maxHP) {
     // If hp over max, reduces it back to max
     Target[0].HP = Target[0].maxHP;
   }
+  // Decreases quantity by 1
+  quantity--;
 }
 
 // implementation of the UseHealItem function
-void UseStatusItem::Execute(string name, Character* Target, Character* Actor){
-
-  // Decides effect applied based on item name
-  // For regeneration effect item
-  if (name == "Regen Elixir"){
-    // Creates regen status effect
-    statusEffect = new RegenEffect(10, 4);
-  // Informs user an invalid item name is present
-  } else {
-    cout << "Invalid item name." << endl;
-  }
-
-  // Applies status effect to character 
-  Target[0].addStatus(statusEffect);
+void UseStatusItem::Execute(Character* Target, Character* Actor) {
+  cout << Actor[0].Name << " used " << name << "." << endl;
+  // Applies status effect to character
+  Target[0].addStatus(statusEffect[0].clone());
 
   // Informs user what happened on item use.
-  cout << "The " << statusEffect << " was applied to " << Target << "." << endl;
+  cout << "The " << statusEffect[0].statusType << " was applied to "
+       << Target[0].Name << "." << endl;
+  // Decreases quantity by 1
+  quantity--;
+}
+
+// Implementation of UseCureItem function
+UseCureItem::UseCureItem(string _name, string _statusToRemove, int _quantity) {
+  // Declares variables from inputs
+  name = _name;
+  statusToRemove = _statusToRemove;
+  quantity = _quantity;
+}
+
+// Implementation of UseHealItem function
+UseHealItem::UseHealItem(string _name, int _healAmount, int _quantity) {
+  // Declares variables from inputs
+  name = _name;
+  healAmount = _healAmount;
+  quantity = _quantity;
+};
+
+// Implementation of UseStatusItem function
+UseStatusItem::UseStatusItem(string _name, Status* status, int _quantity) {
+  // Declares variables from inputs
+  name = _name;
+  statusEffect = status;
+  quantity = _quantity;
+}
+
+// Implementation of UseCureItem clone function
+UseCureItem* UseCureItem::clone() {
+  // Declares new varibale from free memory
+  UseCureItem* newCure = new UseCureItem(name, statusToRemove, quantity);
+  // Returns variable to request location
+  return newCure;
+}
+
+// Implementation of UseStatusItem clone function
+UseStatusItem* UseStatusItem::clone() {
+  // Declares new status variable from statusEffect 
+  Status* newStatus = statusEffect[0].clone();
+  // Declares new varibale from free memory
+  UseStatusItem* newStatusAction = new UseStatusItem(name, newStatus, quantity);
+  // Returns variable to request location
+  return newStatusAction;
+}
+
+// Implementation of UseHealItem clone function
+UseHealItem* UseHealItem::clone() {
+  // Declares new varibale from free memory
+  UseHealItem* newHeal = new UseHealItem(name, healAmount, quantity);
+  // Returns variable to request location
+  return newHeal;
 }

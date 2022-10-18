@@ -1,3 +1,5 @@
+#include "UseItem.h"
+
 #ifndef ITEM_H
 #define ITEM_H
 
@@ -20,5 +22,6 @@ class Item {
      Item();
      Item(string iName, string iType, int iQuantity, UseItem* action);
      ~Item();
+     Item* clone();
 };
 #endif //ITEM_H

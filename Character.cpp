@@ -1,8 +1,12 @@
-#include <string>
 #include <iostream>
+#include <string>
 using namespace std;
-#include "Status.h"
+#include "Attack_Move.h"
 #include "Character.h"
+#include "GameSave.h"
+#include "Heal_Move.h"
+#include "Move.h"
+#include "Status.h"
 
 Character::Character() {
   Name = "";
@@ -20,7 +24,9 @@ Character::Character() {
   dead = false;
 };
 
-Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,int _baseSpeed, int _baseHeal, Move** _Moveset, int _numberOfMoves) {
+Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
+                     int _baseSpeed, int _baseHeal, Move** _Moveset,
+                     int _numberOfMoves) {
   Name = _Name;
   HP = _maxHP;
   maxHP = _maxHP;
@@ -36,7 +42,28 @@ Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,int _b
   dead = false;
 };
 
-Character::~Character(){
+Character::Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
+                     int _baseSpeed, int _baseHeal, Move** PossibleMoves,
+                     int _Moveset[], int _numberOfMoves) {
+  Name = _Name;
+  HP = _maxHP;
+  maxHP = _maxHP;
+  baseAtt = _baseAtt;
+  baseDef = _baseDef;
+  baseSpeed = _baseSpeed;
+  baseHeal = _baseHeal;
+  StatusEffect = nullptr;
+  numberOfEffects = 0;
+  numberOfMoves = _numberOfMoves;
+  Moveset = new Move*[numberOfMoves];
+  for (int iMove = 0; iMove < numberOfMoves; iMove++) {
+    Moveset[iMove] = PossibleMoves[_Moveset[iMove]][0].clone();
+  }
+  missNextTurn = false;
+  dead = false;
+};
+
+Character::~Character() {
   if (numberOfEffects > 0) {
     for (int iStatus = 0; iStatus < numberOfEffects; iStatus++) {
       delete StatusEffect[iStatus];
@@ -51,24 +78,23 @@ Character::~Character(){
   delete Moveset;
 };
 
-void Character::ApplyStatus() { 
+void Character::ApplyStatus() {
   if (StatusEffect == nullptr) {
     return;
   }
-for (int i = 0; i < numberOfEffects;i++) {
-  StatusEffect[i][0].Apply(this);
-  if (StatusEffect[i][0].duration <= 0) {
-    removeStatus(i);
-    i--;
+  for (int i = 0; i < numberOfEffects; i++) {
+    StatusEffect[i][0].Apply(this);
+    if (StatusEffect[i][0].duration <= 0) {
+      removeStatus(i);
+      i--;
+    }
   }
-}
-if (HP > maxHP) {
+  if (HP > maxHP) {
     HP = maxHP;
-}
-else if (HP <= 0) {
+  } else if (HP <= 0) {
     HP = 0;
     dead = true;
-}
+  }
 };
 
 void Character::resetCharacter() {
@@ -84,17 +110,16 @@ void Character::resetCharacter() {
   StatusEffect = nullptr;
   numberOfEffects = 0;
   for (int iMove = 0; iMove < numberOfMoves; iMove++) {
-    Moveset[iMove][0].remainingUses =
-        Moveset[iMove][0].initialUses;
+    Moveset[iMove][0].remainingUses = Moveset[iMove][0].initialUses;
   }
 };
 
-void Character::addStatus(Status* Effect){
-  //If input is a null pointer, do nothing.
+void Character::addStatus(Status* Effect) {
+  // If input is a null pointer, do nothing.
   if (Effect == nullptr) {
     return;
   }
-  //Create new array with size numOfEffects+1
+  // Create new array with size numOfEffects+1
   Status** newStatusEffect = new Status*[numberOfEffects + 1];
   // Add pointers to array
   for (int iStatus = 0; iStatus < numberOfEffects; iStatus++) {
@@ -108,14 +133,14 @@ void Character::addStatus(Status* Effect){
   numberOfEffects++;
 };
 
-void Character::removeStatus(int effectIndex){
-  //If the index is invalid, do nothing.
+void Character::removeStatus(int effectIndex) {
+  // If the index is invalid, do nothing.
   if (effectIndex < 0 || effectIndex >= numberOfEffects) {
     return;
   }
   delete StatusEffect[effectIndex];
   StatusEffect[effectIndex] = nullptr;
-  
+
   // Create new array with size numOfEffects-1
   Status** newStatusEffect = new Status*[numberOfEffects - 1];
   // Add pointers to array
@@ -133,8 +158,8 @@ void Character::removeStatus(int effectIndex){
   numberOfEffects--;
 };
 
-void Character::removeStatus(string effectType){
-  //Find all Statuses with type == effectType
+bool Character::removeStatus(string effectType) {
+  // Find all Statuses with type == effectType
   int n = 0;
   for (int iStatus = 0; iStatus < numberOfEffects; iStatus++) {
     if (effectType == StatusEffect[iStatus][0].statusType) {
@@ -148,16 +173,16 @@ void Character::removeStatus(string effectType){
     numberOfEffects = 0;
     delete StatusEffect;
     StatusEffect = nullptr;
-    return;
+    return true;
   }
-  //If all Status effects are to be removed, clear the entire array.
+  // If all Status effects are to be removed, clear the entire array.
 
-  //Create new array with size numOfEffects-n
+  // Create new array with size numOfEffects-n
   Status** newStatusEffect = new Status*[numberOfEffects - n];
-  //Add pointers to array
+  // Add pointers to array
   int iStatus2 = 0;
   for (int iStatus = 0; iStatus < numberOfEffects; iStatus++) {
-    if (StatusEffect[iStatus]!= nullptr) {
+    if (StatusEffect[iStatus] != nullptr) {
       newStatusEffect[iStatus2] = StatusEffect[iStatus];
       iStatus2++;
     }
@@ -166,5 +191,18 @@ void Character::removeStatus(string effectType){
   delete StatusEffect;
   StatusEffect = newStatusEffect;
   // decrement numOfEffects
-  numberOfEffects-=n;
+  numberOfEffects -= n;
+  return n > 0;
+};
+
+Character* Character::clone() {
+  Move** clonedMoveset = new Move*[numberOfMoves];
+  for (int iMove = 0; iMove < numberOfMoves; iMove++) {
+    clonedMoveset[iMove] = Moveset[iMove][0].clone();
+  }
+
+  Character* clonedCharacter =
+      new Character(Name, maxHP, baseAtt, baseDef, baseSpeed, baseHeal,
+                    clonedMoveset, numberOfMoves);
+  return clonedCharacter;
 };
