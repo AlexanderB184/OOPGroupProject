@@ -10,6 +10,8 @@
 
 using namespace std;
 
+UseStatusItem::~UseStatusItem() { delete statusEffect; }
+
 // implementation of the UseCureItem function
 void UseCureItem::Execute(Character* Target, Character* Actor) {
   cout << Actor[0].Name << " used " << name << "." << endl;
@@ -53,7 +55,8 @@ void UseStatusItem::Execute(Character* Target, Character* Actor) {
   Target[0].addStatus(statusEffect[0].clone());
 
   // Informs user what happened on item use.
-  cout << "The " << statusEffect[0].statusType << " was applied to " << Target[0].Name << "." << endl;
+  cout << "The " << statusEffect[0].statusType << " was applied to "
+       << Target[0].Name << "." << endl;
 }
 
 UseCureItem::UseCureItem(string _name, string _statusToRemove, int _quantity) {

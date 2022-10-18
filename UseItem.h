@@ -57,6 +57,7 @@ class UseStatusItem : public UseItem {
  public:
   // Declares function
   UseStatusItem(string, Status* status, int);
+  ~UseStatusItem();
   void Execute(Character* Target, Character* Actor);
   UseStatusItem* clone();
 };
