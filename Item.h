@@ -2,7 +2,6 @@
 #define ITEM_H
 
 #include <string>
-//#include "UseItem.h"
 class UseItem;
 
 using namespace std;
@@ -10,11 +9,13 @@ using namespace std;
 // Class definition for item class
 class Item {
     private:
-        string name;
-        string type;
-        int quantity;
+     // Declares variables
+     string name;
+     string type;
+     int quantity;
         
     public:
+     // Declares functions
      UseItem* action;
      Item();
      Item(string iName, string iType, int iQuantity, UseItem* action);
