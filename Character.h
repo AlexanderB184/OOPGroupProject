@@ -27,13 +27,22 @@ class Character {
   bool dead;
 
   Character();
+
+  // Constructor takes in the stats and moves and creates a charactor
   Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
             int _baseSpeed, int _baseHeal, Move** Moveset, int _numberOfMoves);
+
+  // Constructor takes in stats and a list of possible moves as well as which of
+  // those moves the character will use
   Character(string _Name, int _maxHP, int _baseAtt, int _baseDef,
             int _baseSpeed, int _baseHeal, Move**, int[], int _numberOfMoves);
-  Character(string);
+
+  // Decontructor clears the memory
   ~Character();
+
+  // Clone function creates a new identical character
   Character* clone();
+
   void ApplyStatus();
   // Applies the effect of all Status effects a character has onto that
   // character

@@ -32,6 +32,16 @@ GameSave::GameSave() {
   PossibleCharacters[3] =
       new Character("Mark", 100, 50, 50, 50, 50, PossibleMoves, Moves4, 3);
   // Prefab Items
+  nPossibleItemActions = 3;
+  PossibleItemActions = new UseItem*[3];
+  PossibleItemActions[0] = new UseCureItem();
+  PossibleItemActions[1] = new UseStatusItem();
+  PossibleItemActions[2] = new UseHealItem();
+  nPossibleItems = 3;
+  PossibleItems = new Item*[3];
+  PossibleItems[0] = new Item();
+  PossibleItems[1] = new Item();
+  PossibleItems[2] = new Item();
 };
 
 GameSave::~GameSave() {
