@@ -34,14 +34,15 @@ GameSave::GameSave() {
   // Prefab Items
   nPossibleItemActions = 3;
   PossibleItemActions = new UseItem*[3];
-  PossibleItemActions[0] = new UseCureItem();
-  PossibleItemActions[1] = new UseStatusItem();
-  PossibleItemActions[2] = new UseHealItem();
+  PossibleItemActions[0] = new UseCureItem("Burn", 1);
+  Status* statusEffect2 = new RegenEffect(10, 10);
+  PossibleItemActions[1] = new UseStatusItem(statusEffect2, 1);
+  PossibleItemActions[2] = new UseHealItem(50, 1);
   nPossibleItems = 3;
   PossibleItems = new Item*[3];
-  PossibleItems[0] = new Item();
-  PossibleItems[1] = new Item();
-  PossibleItems[2] = new Item();
+  PossibleItems[0] = new Item("Cure_Burn","Cure",1,PossibleItemActions[0]);
+  PossibleItems[1] = new Item("Regen_Potion","Status",1,PossibleItemActions[1]);
+  PossibleItems[2] = new Item("Heal_Potion","Heal",1,PossibleItemActions[2]);
 };
 
 GameSave::~GameSave() {

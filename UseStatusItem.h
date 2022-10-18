@@ -15,7 +15,8 @@ class UseStatusItem : public UseItem {
   Status* StatusEffect;
 
  public:
-  Execute(Character* Target, Character* Actor);
+  UseStatusItem(Status* status);
+  void Execute(Character* Target, Character* Actor);
 };
 
 #endif  // USESTATUSITEM_H

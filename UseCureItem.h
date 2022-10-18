@@ -11,20 +11,11 @@ using namespace std;
 class UseCureItem : public UseItem {
  private:
   // Determines what item is used of cure type based on name
-  switch (name) {
-    // Cure for stun effect, sets status to removes as stun.
-    case:
-      "Stun Cure" string StatusToRemove = "Stun";
-    // Cure for burn effect, sets status to remove as burn.
-    case:
-      "Burn Cure" string StatusToRemove = "Burn";
-    default:
-      // Case if invalid option occurs
-      cout << "Invalid item name" << endl;
-  }
+  string statusToRemove;
 
  public:
-  Execute(Character* Target, Character* Actor);
+  UseCureItem(string statusToRemove);
+  void Execute(Character* Target, Character* Actor);
 };
 
 #endif  // USECUREITEM_H

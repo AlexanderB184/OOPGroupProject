@@ -1,5 +1,5 @@
 #include "Item.h"
-
+#include "UseItem.h"
 #include <iostream>
 
 using namespace std;
@@ -22,4 +22,9 @@ Item::Item(string iName, string iType, int iQuantity, UseItem* _action) {
 };
 
 // Implementation of the default item deconstructor
-Item::~Item(){};
+Item::~Item() { delete action; };
+
+Item* Item::clone() {
+  Item* newItem = new Item(name, type, quantity, action[0].clone());
+  return newItem;
+}
