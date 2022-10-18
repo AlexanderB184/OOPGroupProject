@@ -24,8 +24,7 @@ Heal_Move* Heal_Move::clone() {
 
 void Heal_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name
-            << std::endl;  // remember to check if the remaining cool down is <
-                           // 0 before executing a heal move
+            << std::endl;
 
   if (Actor[0].HP + healAmount + Actor[0].baseHeal < Actor[0].maxHP) {
     Actor[0].HP = Actor[0].HP + healAmount +

@@ -32,8 +32,9 @@ Status_Move* Status_Move::clone() {
 void Status_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
-  int random = (0 + (rand() % 100));
-  if (random >= statusAccuracy * pow(0.95, Target[0].baseSpeed / 10)) {
+  int random = (0 + (rand() % 100));  // random number from 0 to 100
+  if (random >= statusAccuracy *
+                    pow(0.95, Target[0].baseSpeed / 10)) {  // accuracy formula
     Target[0].addStatus(status[0].clone());
     std::cout << Target[0].Name << " became inflicted with " << statusName
               << std::endl;

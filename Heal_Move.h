@@ -11,6 +11,7 @@ class Heal_Move : public Move {
   void Execute(
       Character* Actor,
       Character* Target);  // heals the Actor based on the Actor's stats
+      
   Heal_Move* clone();      // Makes a clone object
 
   int healAmount;  // healing power of the move (higher number = move powerful)

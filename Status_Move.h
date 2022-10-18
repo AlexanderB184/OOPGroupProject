@@ -13,10 +13,13 @@ class Status_Move : public Move {
                Character* Target);  // inflicts the Target with a status
                                     // condition with the accuracy determined by
                                     // the base speed of the Target
-  Status_Move* clone();             // Makes a clone object
+
+  Status_Move* clone();  // Makes a clone object
 
   std::string statusName;  // name of the status condition inflicted
-  Status* status;          // pointer to the status condition
+
+  Status* status;  // pointer to the status condition
+
   int statusAccuracy;  // number from 1-100 representing the chance of success
                        // as a percentage
 };

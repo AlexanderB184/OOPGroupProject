@@ -9,7 +9,8 @@
 
 int main() {
   srand(time(NULL));  // randomize seed
-  // due to the randomness involved, these tests have to be checked by a human
+  
+  // Due to the randomness involved, these tests have to be checked by a human
   // and cannot be fully automated
 
   Status *burn = new BurnEffect(5, 3);

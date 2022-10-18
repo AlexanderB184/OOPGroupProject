@@ -38,14 +38,15 @@ Special_Attack_Move* Special_Attack_Move::clone() {
 void Special_Attack_Move::Execute(Character* Actor, Character* Target) {
   std::cout << Actor[0].Name << " used " << name << std::endl;
 
-  int random = (0 + (rand() % 100));
-  if (random <= accuracy * pow(0.95, Target[0].baseSpeed / 10)) {
+  int random = (0 + (rand() % 100));  // random number from 0 to 100
+  if (random <=
+      accuracy * pow(0.95, Target[0].baseSpeed / 10)) {  // accuracy formula
     std::cout << Target[0].Name << " lost "
               << damage * Actor[0].baseAtt / Target[0].baseDef << " health"
               << std::endl;
     if (Target[0].HP - (damage * Actor[0].baseAtt / Target[0].baseDef) > 0) {
-      Target[0].HP =
-          Target[0].HP - (damage * Actor[0].baseAtt / Target[0].baseDef);
+      Target[0].HP = Target[0].HP - (damage * Actor[0].baseAtt /
+                                     Target[0].baseDef);  // damage formula
       std::cout << Target[0].Name << " has " << Target[0].HP
                 << " health remaining" << std::endl;
 
